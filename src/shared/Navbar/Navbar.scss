@@ -1,0 +1,39 @@
+@import '../../variables.scss';
+
+nav {
+    color: white;
+    background-color: $blackBackgroundLowOppacity;
+    position: fixed;
+    width: 100%;
+    padding: 10px;
+    height: $navbarHeight;
+    ul {
+        list-style: none;
+        padding-left: 0;
+        li {
+            display: inline-block;
+            a {
+                text-decoration: none;
+                font-family: 'Maven Pro', sans-serif;
+                font-weight: 700;
+                color: #cccc;
+                font-size: 1.5rem;
+                &:hover {
+                    color: $activeLink
+                }
+            }
+            .active {
+                color: $activeLink
+            }
+        }
+    }
+}
+
+
+
+.toggle-button {
+    color: white !important;
+    .p-button-icon {
+        font-size: 1.3rem;
+    }
+}

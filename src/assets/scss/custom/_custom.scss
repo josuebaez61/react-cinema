@@ -1,0 +1,10 @@
+@import '../../../variables.scss';
+
+.no-radius {
+    border-radius: 0;
+}
+
+.p-card-black {
+    background-color: $blackBackgroundLowOppacity;
+    color: white;
+}

@@ -1,0 +1,29 @@
+@import '../../variables.scss';
+
+.sidebar-navigation {
+    position: absolute;
+    height: calc(100vh - #{$navbarHeight});
+    background-color: white;
+    width: 70%;
+    top: $navbarHeight;
+    left: 0px;
+    ul {
+        padding-left: 0;
+        li {
+            display: block;
+            a {
+                font-family: 'Maven Pro', sans-serif;
+                font-weight: 400;
+                padding: 10px;
+                display: block;
+                font-size: 1.2rem;
+                text-decoration: none;
+                color: black;
+                border-bottom: 1px solid #ccc;
+            }
+            .active {
+                color: #cccc
+            }
+        }
+    }
+}
