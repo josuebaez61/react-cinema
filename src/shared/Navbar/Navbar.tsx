@@ -26,7 +26,9 @@ const Navbar = () => {
                         className="p-d-md-none toggle-button p-button-primary p-button-text"
                         icon="pi pi-list"
                     />
-                    <Logo />
+                    <Link to="/cartelera" style={{ textDecoration:"none" }}>
+                        <Logo />
+                    </Link>
                     <ul className="p-d-none p-d-md-inline-block">
                         {
                             navItems.map

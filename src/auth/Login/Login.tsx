@@ -3,13 +3,13 @@ import { Card } from 'primereact/card'
 import { Divider } from 'primereact/divider'
 import { InputText } from 'primereact/inputtext'
 import React, { useState } from 'react'
+import { Link } from 'react-router-dom'
+import { useWindowSize } from '../../hooks/useWindowSize'
 import './Login.scss'
 
 const Login = () => {
-    const [windowWidth, setWindowWidth] = useState(window.screen.width);
 
-    window.onresize = (e: any) => setWindowWidth(e.target ? e.target.outerWidth : window.screen.width)
-
+    const { width: windowWidth } = useWindowSize();
 
     return (
         <div className="auth-view">
@@ -35,6 +35,10 @@ const Login = () => {
                                             <InputText id="password" type="password" />
                                         </div>
                                         <Button className="p-mt-2 p-button-rounded" label="Login"></Button>
+                                        <div className="p-d-flex p-jc-between p-mt-2">
+                                            <Link to="/reset-password">Olvidé mi clave</Link>
+                                            <Link to="/register">Registrarse</Link>
+                                        </div>
                                     </div>
                                 </div>
                                 <div className="p-col-12 p-md-2">

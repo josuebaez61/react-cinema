@@ -7,6 +7,7 @@ import {
   Redirect
 } from "react-router-dom";
 import Login from '../auth/Login/Login';
+import Register from '../auth/Register/Register';
 import Navbar from '../shared/Navbar/Navbar';
 import Sidebar from '../shared/Sidebar/Sidebar';
 import Home from '../views/Home/Home';
@@ -24,6 +25,7 @@ const AppRouter = () => {
           <Switch>
             <Route exact path="/cartelera" component={Home} />
             <Route exact path="/login" component={Login} />
+            <Route exact path="/register" component={Register} />
             <Redirect to="/cartelera"/>
           </Switch>
         </div>
