@@ -1,49 +1,56 @@
 import React, { useEffect, useState } from 'react'
 import './Navbar.scss'
 import Search from '../../components/Search/Search';
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import Logo from '../../components/Logo/Logo';
 import { Button } from 'primereact/button';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { hideSidebar, showSidebar } from '../../store/actions/sidebarActions';
 import { navItems } from '../nav-items';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faKey, faSearch } from '@fortawesome/free-solid-svg-icons';
+import CustomDivider from '../../components/CustomDivider/CustomDivider';
+import { RootState } from '../../store';
 
 const Navbar = () => {
 
-    const [toggleSidebar, setToggleSidebar] = useState(false);
+    const { show } = useSelector((state: RootState) => state.sidebar)
     const dispatch = useDispatch();
-
-    useEffect(() => {
-        if ( toggleSidebar ) {
-            dispatch(showSidebar())
-        } else {
-            dispatch(hideSidebar())
-        }
-    }, [toggleSidebar])
 
     return (
         <nav>
             <div className="p-p-0 p-md-7 container">
                 <div className="p-d-flex p-jc-between p-align-center">
                     <Button
-                        onClick={ () => setToggleSidebar(state => !state) }
-                        className="p-d-md-none toggle-button p-button-primary p-button-text" 
+                        onClick={() => show ? dispatch(hideSidebar()) : dispatch(showSidebar())}
+                        className="p-d-md-none toggle-button p-button-primary p-button-text"
                         icon="pi pi-list"
                     />
                     <Logo />
                     <ul className="p-d-none p-d-md-inline-block">
-                    {
-                        navItems.map( item =>
-                            (
-                                <li key={ item.url }>
-                                    <Link to={ item.url } className="p-mr-2 p-ml-2">{ item.title.toUpperCase() }</Link>
-                                </li>
+                        {
+                            navItems.map
+                            (item =>
+                                (
+                                    <li key={item.url}>
+                                        <NavLink activeClassName="active" to={item.url} className="p-mr-2 p-ml-2">{item.title.toUpperCase()}</NavLink>
+                                    </li>
+                                )
                             )
-                        )
-                    }
+                        }
                     </ul>
                     <div className="p-d-none p-d-md-inline-block">
-                        <Search />
+                        <div className="search-login p-d-flex">
+                            <div>
+                                <Link to="/search">
+                                    <FontAwesomeIcon icon={ faSearch } />
+                                </Link>
+                            </div>
+                            <CustomDivider longitude="25px" />
+                            <div>
+                                <NavLink activeClassName="active" to="/login">INGRESAR</NavLink>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

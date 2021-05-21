@@ -7,4 +7,12 @@
 .p-card-black {
     background-color: $blackBackgroundLowOppacity;
     color: white;
+    border-radius: 0;
+}
+
+.p-divider.p-divider-vertical::before {
+    border-left: 1px solid #cccc;
+}
+.p-divider.p-divider-horizontal::before {
+    border-top: 1px solid #cccc;
 }
