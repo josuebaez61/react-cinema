@@ -15,7 +15,7 @@ const Login = () => {
         <div className="auth-view">
             <div className="container">
                 <div 
-                    className="p-grid p-jc-center p-ai-center auth-view__content animate__animated animate__fadeIn animate__fast"
+                    className="p-grid p-nogutter p-jc-center p-ai-center auth-view__content animate__animated animate__fadeIn animate__fast"
                     style={{ color: 'white' }}
                 >
                     <div className="p-col-10 p-md-8">

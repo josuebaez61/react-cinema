@@ -7,6 +7,10 @@ nav {
     width           : 100%;
     padding         : 10px;
     height          : $navbarHeight;
+    z-index         : 9999;
+    display         : flex;
+    justify-content : center;
+    align-items     : center;
 
     ul {
         list-style  : none;
@@ -35,8 +39,9 @@ nav {
 
     .search-login {
         a {
-            color: white;
+            color          : white;
             text-decoration: none;
+
             &:hover {
                 color: #cccc
             }

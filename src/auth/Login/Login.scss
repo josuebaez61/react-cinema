@@ -4,6 +4,7 @@
     background-image: url(../../assets/image/auth-background.jpg);
     background-size: cover;
     background-repeat: no-repeat;
+    height: 100vh;
     .auth-view__content {
         height: calc(100vh - #{ $navbarHeight });
     }

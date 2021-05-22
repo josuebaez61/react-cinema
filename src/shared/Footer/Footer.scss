@@ -1,0 +1,24 @@
+.app-footer {
+    min-height      : 300px;
+    width           : 100%;
+    color           : white;
+    background-color: black;
+
+    .app-footer__site-map {
+        height: 250px;
+        ul {
+            list-style-type: none;
+
+            @media (max-width:768px) {
+                li {
+                    text-align: center;
+                }
+            }
+        }
+        @media (max-width:768px) {
+            h5 {
+                text-align: center;
+            }
+        }
+    }
+}
