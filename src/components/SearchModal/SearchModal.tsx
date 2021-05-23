@@ -15,9 +15,10 @@ const SearchModal = ({ visible }: SearchModalProps) => {
     return (
         <Dialog style={{ width: '90%', maxWidth: '950px' }} showHeader={false} position="top" visible={visible} onHide={ () => void(0) } >
             <h2 className="search-modal-title p-mb-1 p-text-center">Buscador</h2>
-            <InputText autoFocus className="p-mb-3 w-100 search-modal-input" placeholder="Spider-man: Homecoming" />
+            <InputText autoFocus className="p-mb-1 w-100 search-modal-input" placeholder="Spider-man: Homecoming" />
+            <p className="help-text p-mb-2">Escribe tu búsqueda y luego presiona <b>ENTER</b></p>
             <div className="p-text-center">
-                <Button onClick={ () => dispatch(hideSearchModal()) } className="p-button-rounded">
+                <Button onClick={ () => dispatch(hideSearchModal()) } className="p-button-outlined p-button-rounded">
                     Cancelar busqueda
                 </Button>
             </div>

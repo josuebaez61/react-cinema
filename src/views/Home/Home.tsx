@@ -1,5 +1,6 @@
 import React from 'react'
 import { Card } from 'primereact/card';
+import { MoviesService } from '../../services/MoviesService';
 const Home = () => {
     return (
         <div className="container">

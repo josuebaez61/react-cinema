@@ -17,6 +17,7 @@
     "@types/react-redux": "^7.1.16",
     "@types/react-router-dom": "^5.1.7",
     "animate.css": "^4.1.1",
+    "axios": "^0.21.1",
     "node-sass": "4.14.0",
     "primeflex": "^2.0.0",
     "primeicons": "^4.1.0",
