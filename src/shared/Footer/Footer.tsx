@@ -57,17 +57,17 @@ const Footer = () => {
                             <h5>AUTOR DEL SITIO</h5>
                             <ul className="p-p-0 p-pl-md-2">
                                 <li>
-                                    <a href="http://www.linkedin.com/in/josuebaez15">
+                                    <a target="_blank" href="http://www.linkedin.com/in/josuebaez15">
                                         LinkedIn
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="https://www.facebook.com/josueDev61">
+                                    <a target="_blank" href="https://www.facebook.com/josueDev61">
                                         Facebook
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="https://www.instagram.com/josuebaez61/">
+                                    <a target="_blank" href="https://www.instagram.com/josuebaez61/">
                                         Instagram
                                     </a>
                                 </li>

@@ -1,0 +1,34 @@
+.search-modal {
+    background-color: rgba(0, 0, 0, 0.32);
+    height: 100%;
+    width: 100%;
+    z-index: 10000;
+    position: fixed;
+    top: 0;
+    left: 0;
+    .search-modal__input-container {
+        margin-top: 3%;
+        input {
+            &::placeholder {
+                font-style: italic;
+            }
+        }
+        h2 {
+            text-align: center;
+            font-size: 4rem;
+            color: white;
+            font-weight: 300;
+        }
+        .search-modal__button-dismiss {
+            font-weight: 800;
+            border-radius: 5px;
+            color: white;
+            background-color: rgba(204, 204, 204, 0.474);
+            padding: 5px;
+            &:hover {
+                color: #cccc;
+                cursor: pointer;
+            }
+        }
+    }
+}

@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react'
 import './Navbar.scss'
-import Search from '../../components/Search/Search';
 import { Link, NavLink } from 'react-router-dom';
 import Logo from '../../components/Logo/Logo';
 import { Button } from 'primereact/button';
@@ -11,6 +10,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faKey, faSearch } from '@fortawesome/free-solid-svg-icons';
 import CustomDivider from '../../components/CustomDivider/CustomDivider';
 import { RootState } from '../../store';
+import { showSearchModal } from '../../store/actions/searchActions';
 
 const Navbar = () => {
 
@@ -26,27 +26,27 @@ const Navbar = () => {
                         className="p-d-md-none toggle-button p-button-primary p-button-text"
                         icon="pi pi-list"
                     />
-                    <Link to="/cartelera" style={{ textDecoration:"none" }}>
+                    <Link to="/cartelera" style={{ textDecoration: "none" }}>
                         <Logo />
                     </Link>
                     <ul className="p-d-none p-d-md-inline-block">
                         {
                             navItems.map
-                            (item =>
+                                (item =>
                                 (
                                     <li key={item.url}>
                                         <NavLink activeClassName="active" to={item.url} className="p-mr-2 p-ml-2">{item.title.toUpperCase()}</NavLink>
                                     </li>
                                 )
-                            )
+                                )
                         }
                     </ul>
                     <div className="p-d-none p-d-md-inline-block">
                         <div className="search-login p-d-flex">
                             <div>
-                                <Link to="/search">
-                                    <FontAwesomeIcon icon={ faSearch } />
-                                </Link>
+                                <a onClick={ () => dispatch(showSearchModal()) }>
+                                    <FontAwesomeIcon icon={faSearch} />
+                                </a>
                             </div>
                             <CustomDivider longitude="25px" />
                             <div>
