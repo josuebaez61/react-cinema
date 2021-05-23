@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import './Navbar.scss'
 import { Link, NavLink } from 'react-router-dom';
 import Logo from '../../components/Logo/Logo';
@@ -7,7 +7,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { hideSidebar, showSidebar } from '../../store/actions/sidebarActions';
 import { navItems } from '../nav-items';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faKey, faSearch } from '@fortawesome/free-solid-svg-icons';
+import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import CustomDivider from '../../components/CustomDivider/CustomDivider';
 import { RootState } from '../../store';
 import { showSearchModal } from '../../store/actions/searchActions';
@@ -44,9 +44,9 @@ const Navbar = () => {
                     <div className="p-d-none p-d-md-inline-block">
                         <div className="search-login p-d-flex">
                             <div>
-                                <a onClick={ () => dispatch(showSearchModal()) }>
+                                <button className="text-button"  onClick={ () => dispatch(showSearchModal()) } >
                                     <FontAwesomeIcon icon={faSearch} />
-                                </a>
+                                </button>
                             </div>
                             <CustomDivider longitude="25px" />
                             <div>

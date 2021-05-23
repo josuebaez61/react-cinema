@@ -1,4 +1,3 @@
-import { InputText } from 'primereact/inputtext'
 import React from 'react'
 import { Card } from 'primereact/card';
 const Home = () => {

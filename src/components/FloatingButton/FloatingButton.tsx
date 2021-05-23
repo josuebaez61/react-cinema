@@ -1,7 +1,5 @@
 import { IconProp } from '@fortawesome/fontawesome-svg-core'
-import { faSearch } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { Button } from 'primereact/button'
 import React, { MouseEventHandler, useEffect, useState } from 'react'
 import './FloatingButton.scss'
 
@@ -30,7 +28,7 @@ const FloatingButton = ({ position = 'right', icon, onClick, className = '' }: F
                 setPositionObj({ right: '10px'})
                 break;
         }
-    }, [])
+    }, [position])
 
     return (
         <button 

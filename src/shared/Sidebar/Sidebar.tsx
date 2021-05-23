@@ -31,7 +31,7 @@ const Sidebar = () => {
                 }
                 break;
         }
-    }, [show])
+    }, [show, display])
 
     const onClick = () => {
         dispatch(hideSidebar())

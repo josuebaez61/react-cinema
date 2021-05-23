@@ -1,5 +1,4 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.scss';
 import AppRouter from './routes/AppRouter';
 import { Provider } from 'react-redux';

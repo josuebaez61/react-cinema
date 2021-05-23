@@ -1,6 +1,5 @@
 import { createReducer } from "@reduxjs/toolkit";
 import { hideSearchModal, showSearchModal } from "../actions/searchActions";
-import { hideSidebar, showSidebar } from "../actions/sidebarActions";
 
 const initialState = {
     show: false,

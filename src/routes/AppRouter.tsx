@@ -5,7 +5,6 @@ import {
   BrowserRouter as Router,
   Switch,
   Route,
-  Link,
   Redirect
 } from "react-router-dom";
 import Login from '../auth/Login/Login';
@@ -47,7 +46,7 @@ const AppRouter = () => {
           </Switch>
         </div>
         <Footer />
-        <SearchModal visible={ showSearch }/>
+        <SearchModal visible={ showSearch } />
         <FloatingButton 
           className="p-d-flex p-d-md-none animate__animated animate__fadeInUp"
           onClick={ onFloatingButtonClick }

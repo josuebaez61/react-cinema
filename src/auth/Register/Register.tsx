@@ -1,9 +1,8 @@
 import { Button } from 'primereact/button';
 import { Card } from 'primereact/card';
-import { Divider } from 'primereact/divider';
 import { InputText } from 'primereact/inputtext';
-import React, { useState } from 'react'
-import { Link, useHistory, useLocation } from 'react-router-dom';
+import React from 'react'
+import { useHistory } from 'react-router-dom';
 import './Register.scss'
 const Register = () => {
     const history = useHistory()
