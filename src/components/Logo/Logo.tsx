@@ -5,7 +5,7 @@ import { Button } from 'primereact/button';
 import './Logo.scss'
 const Logo = () => {
     return (
-        <h2 className="p-text-red">
+        <h2 className="logo p-text-red">
             <FontAwesomeIcon color="#61DAFB" icon={ faFilm } /> React Cinema
         </h2>
     )

@@ -77,7 +77,7 @@ const Sidebar = () => {
                     to="/singout" 
                     style={{ color: 'var(--pink-500)' }}
                 >
-                   <FontAwesomeIcon icon={ faSignOutAlt} /> SALIR
+                   <FontAwesomeIcon icon={ faSignOutAlt } /> SALIR
                 </NavLink>
             </div>
         </div>
