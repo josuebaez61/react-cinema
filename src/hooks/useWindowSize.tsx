@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const initialState = {
     width: window.screen.width,
@@ -7,10 +7,21 @@ const initialState = {
 
 export const useWindowSize = () => {
     const [windowSize, setWindowSize] = useState(initialState);
-    window.onresize = (e: any) => 
-    setWindowSize(e.target ? { 
-        width: e.target.outerWidth,
-        height: e.target.outerHeight
-    } : initialState);
+
+    useEffect(() => {
+        const resizeCallback = (e: any) => {
+            setWindowSize(e.target ? {
+                width: window.screen.width,
+                height: window.screen.height
+            } : initialState)
+        };
+
+        window.addEventListener('resize', resizeCallback);
+
+        return () => {
+            window.removeEventListener('resize', resizeCallback);
+        }
+    }, []);
+
     return windowSize;
 }

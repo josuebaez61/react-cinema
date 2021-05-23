@@ -42,13 +42,7 @@ const Login = () => {
                                     </div>
                                 </div>
                                 <div className="p-col-12 p-md-2">
-                                    {
-                                        windowWidth < 768 
-                                        ?
-                                        <Divider layout="horizontal" />
-                                        :
-                                        <Divider layout="vertical" />
-                                    }
+                                    <Divider layout={ windowWidth < 768 ? "horizontal" : "vertical"} />
                                 </div>
                                 <div className="p-col-12 p-md-5 p-d-flex p-ai-center p-jc-center">
                                     <div className="p-fluid p-text-center">
