@@ -1,4 +1,5 @@
 import Axios from 'axios';
+import { NowPlayingResponse } from '../models/Movies';
 
 export const theMovieDBAxios = Axios.create({
     baseURL: 'https://api.themoviedb.org/3/',
@@ -10,7 +11,7 @@ export const theMovieDBAxios = Axios.create({
 });
 
 export class MoviesService {
-    static getNowPlaying() {
+    static getNowPlaying(): Promise<NowPlayingResponse> {
         return theMovieDBAxios.get('/movie/now_playing').then(({data}) => data);
     }
 }

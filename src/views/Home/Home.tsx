@@ -1,7 +1,14 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Card } from 'primereact/card';
 import { MoviesService } from '../../services/MoviesService';
+import { useDispatch } from 'react-redux';
+import { fetchNowPlaying } from '../../store/actions/moviesActions';
 const Home = () => {
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        dispatch(fetchNowPlaying());
+    }, [])
     return (
         <div className="container">
             <Card className="p-card-black no-radius">
