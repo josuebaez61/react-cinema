@@ -1,14 +1,31 @@
 .genre-title {
     color: white;
-    font-size: 2rem;
+    font-size: 1.6rem;
     margin-bottom: 10px;
+    @media(min-width: 768px) {
+        font-size: 2rem;
+    }
 }
 
-.home-title {
+.home {
+    .p-galleria-caption {
+        font-size: 1.2rem;
+        padding: 8px;
+        @media(min-width: 768px) {
+            font-size: 2rem;
+            padding: 10px;
+        }
+    }
+}
+
+.home__title {
     text-align: center;
     color: white;
-    font-size: 4rem;
+    font-size: 3rem;
     font-family: 'Bebas Neue';
     font-weight: 200;
     margin: 20px 0px 20px 0px;
+    @media(min-width: 768px) {
+        font-size: 4rem;
+    }
 }

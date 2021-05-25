@@ -1,9 +1,9 @@
 
 export interface GenresResponse {
-    genres: MovieGenre[]
+    genres: Genre[]
 }
 
-export interface MovieGenre {
+export interface Genre {
     id: number;
     name: string;
 }

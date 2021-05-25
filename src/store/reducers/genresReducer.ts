@@ -1,9 +1,9 @@
 import { createReducer } from "@reduxjs/toolkit";
-import { MovieGenre } from "../../models/Genre";
+import { Genre } from "../../models/Genre";
 import { fetchGenres } from "../actions/genresActions";
 
 interface MoviesState {
-    genres: MovieGenre[],
+    genres: Genre[],
     error: any,
     loading: boolean
 }

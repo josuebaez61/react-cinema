@@ -1,28 +1,17 @@
-import React, { useEffect } from 'react'
-import { Card } from 'primereact/card';
+import React from 'react'
 import { Galleria } from 'primereact/galleria';
-import { fetchNowPlaying } from '../../store/actions/moviesActions';
-import { useDispatch, useSelector } from 'react-redux';
-import { RootState } from '../../store';
 import { Movie } from '../../models/Movies';
-import { useMoviesByGenre } from '../../hooks/useMoviesByGenre';
 import MovieBillboard from '../../components/MovieBillboard/MovieBillboard';
 import './Home.scss'
+import { useBillboard } from '../../hooks/useBillboard';
 const Home = () => {
 
-    const { results: movies } = useSelector((state: RootState) => state.movies);
-    const dispatch = useDispatch();
-    useEffect(() => {
-        dispatch(fetchNowPlaying());
-    }, []);
-
-    const moviesByGenre = useMoviesByGenre();
-
+    const { movies, genres } = useBillboard();
 
     const itemCaption = (movie: Movie) => {
         return (
             <>
-                <h4 className="p-mb-2" style={{ fontSize: "2rem" }}>{movie.title}</h4>
+                <h4 className="p-mb-2">{movie.title}</h4>
             </>
         )
     }
@@ -32,25 +21,25 @@ const Home = () => {
     }
 
     return (
-        <div className="container">
+        <div className="home container">
             <Galleria
-                value={movies}
-                item={itemTemplate}
-                showItemNavigators
-                showThumbnails={false}
+                value={ movies }
+                item={ itemTemplate }
+                // showItemNavigators
+                showThumbnails={ false }
                 circular
-                caption={itemCaption}
+                caption={ itemCaption }
                 autoPlay
             />
-            <h1 className="home-title">En Cartelera</h1>
+            <h1 className="home__title">En Cartelera</h1>
             {
-                moviesByGenre.filter( (genre: any) => genre.movies.length > 0 ).map((genre: any) => (
-                    <div key={genre.name}>
-                        <h4 className="genre-title">{genre.name}</h4>
+                genres.map((genre) => (
+                    <div key={ genre.name }>
+                        <h4 className="genre-title">{ genre.name }</h4>
                             <div className="p-grid">
                                 {
                                     genre.movies.map((movie:Movie) => (
-                                        <div className="p-col-2">
+                                        <div key={ movie.id } className="p-col-4 p-md-2">
                                             <MovieBillboard movie={ movie }/>
                                         </div>
                                     ))

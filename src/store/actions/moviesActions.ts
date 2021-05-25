@@ -1,4 +1,4 @@
-import { createAction, createAsyncThunk } from "@reduxjs/toolkit";
+import { createAsyncThunk } from "@reduxjs/toolkit";
 import { MoviesService } from "../../services/MoviesService";
 
 export const fetchNowPlaying = createAsyncThunk(
