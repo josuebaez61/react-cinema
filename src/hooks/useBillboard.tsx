@@ -32,21 +32,19 @@ export const useBillboard = () => {
     }, [dispatch]);
 
     useEffect(() => {
-        if ( movies.length > 0 && genres.length > 0 ) {
-
-            const genreWithMoviesArray: GenreWithMovies[] = genres.map( genre => ({...genre, movies: []}));
-
-            for (const movie of movies) {
-                for (const genreId of movie.genre_ids) {
-                    const genreIndex = genreWithMoviesArray.findIndex( genre => genre.id === genreId );
-                    if (genreIndex) genreWithMoviesArray[genreIndex].movies.push(movie);
+        if (movies.length > 0 && genres.length > 0) {
+            const genreWithMoviesArray: GenreWithMovies[] = genres.map(genre => ({ ...genre, movies: [] }));
+            for (let i = 0; i < genres.length; i++) {
+                for (const movie of movies) {
+                    if (movie.genre_ids.includes(genres[i].id)) {
+                        genreWithMoviesArray[i].movies.push(movie);
+                    }
                 }
             }
-
-            setBillboard( state => ({
+            setBillboard(state => ({
                 ...state,
                 movies: movies,
-                genres: genreWithMoviesArray.filter( genre => genre.movies.length > 0 )
+                genres: genreWithMoviesArray.filter(genre => genre.movies.length > 0)
             }))
         }
     }, [movies, genres])
