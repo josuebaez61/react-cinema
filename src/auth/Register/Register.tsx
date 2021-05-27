@@ -23,19 +23,19 @@ const Register = () => {
                                     <div className="p-fluid">
                                         <div className="p-field">
                                             <label htmlFor="username">Nombre de usuario</label>
-                                            <InputText id="username" type="text" name="username" placeholder="USUARIO235" />
+                                            <InputText id="username" type="text" name="username" />
                                         </div>
                                         <div className="p-field">
                                             <label htmlFor="email">Correo electrónico</label>
-                                            <InputText id="email" type="email" name="email" placeholder="usuario235@email.com" />
+                                            <InputText id="email" type="email" name="email" />
                                         </div>
                                         <div className="p-field">
                                             <label htmlFor="emailVerification">Verifica el correo electrónico</label>
-                                            <InputText id="emailVerification" type="email" name="emailVerification" placeholder="usuario235@email.com"/>
+                                            <InputText id="emailVerification" type="email" name="emailVerification"/>
                                         </div>
                                         <div className="p-field">
                                             <label htmlFor="password">Contraseña</label>
-                                            <InputText id="password" type="password" placeholder="Escriba su contraseña aquí..."/>
+                                            <InputText id="password" type="password" />
                                         </div>
                                         <Button className="p-mt-2 p-button-rounded" label="Registrarse"></Button>
                                         <p className="p-text-right p-mt-2">
