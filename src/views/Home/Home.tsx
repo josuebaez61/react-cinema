@@ -4,6 +4,7 @@ import { Movie } from '../../models/Movies';
 import MovieBillboard from '../../components/MovieBillboard/MovieBillboard';
 import './Home.scss'
 import { useBillboard } from '../../hooks/useBillboard';
+import { useHistory } from 'react-router';
 const Home = () => {
 
     const { movies, genres } = useBillboard();

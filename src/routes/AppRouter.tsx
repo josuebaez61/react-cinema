@@ -19,6 +19,7 @@ import { showSearchModal } from '../store/actions/searchActions';
 import { hideSidebar } from '../store/actions/sidebarActions';
 import Contact from '../views/Contact/Contact';
 import Home from '../views/Home/Home';
+import Movie from '../views/Movie/Movie';
 
 const AppRouter = () => {
   const { show: showSearch } = useSelector((state: RootState) => state.search);
@@ -44,6 +45,7 @@ const AppRouter = () => {
             <Route exact path="/login" component={Login} />
             <Route exact path="/register" component={Register} />
             <Route exact path="/contacto" component={Contact} />
+            <Route exact path="/movie/:id" component={Movie} />
             <Redirect to="/cartelera" />
           </Switch>
         </div>
