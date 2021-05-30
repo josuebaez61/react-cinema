@@ -7,7 +7,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { hideSidebar, showSidebar } from '../../store/actions/sidebarActions';
 import { navItems } from '../nav-items';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faSearch } from '@fortawesome/free-solid-svg-icons';
+import { faSearch, faShoppingCart } from '@fortawesome/free-solid-svg-icons';
 import CustomDivider from '../../components/CustomDivider/CustomDivider';
 import { RootState } from '../../store';
 import { showSearchModal } from '../../store/actions/searchActions';
@@ -16,6 +16,10 @@ const Navbar = () => {
 
     const { show } = useSelector((state: RootState) => state.sidebar)
     const dispatch = useDispatch();
+
+    const handleClick = () => {
+        console.log('click');
+    }
 
     return (
         <nav>
@@ -43,6 +47,12 @@ const Navbar = () => {
                     </ul>
                     <div className="p-d-none p-d-md-inline-block">
                         <div className="search-login p-d-flex">
+                            <div>
+                                <button className="text-button"  onClick={ () => handleClick() } >
+                                    <FontAwesomeIcon icon={faShoppingCart} />
+                                </button>
+                            </div>
+                            <CustomDivider longitude="25px" />
                             <div>
                                 <button className="text-button"  onClick={ () => dispatch(showSearchModal()) } >
                                     <FontAwesomeIcon icon={faSearch} />

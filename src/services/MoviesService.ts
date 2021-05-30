@@ -6,7 +6,7 @@ export const theMovieDBAxios = Axios.create({
     baseURL: 'https://api.themoviedb.org/3/',
     timeout: 1000,
     params: {
-        api_key: process.env.REACT_APP_THE_MOVIE_DB_API_KEY,
+        api_key: '33245a5fba7fb336ade8ee090f3ee97e',
         language: 'es-MX'
     }
 });
