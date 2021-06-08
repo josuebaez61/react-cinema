@@ -76,3 +76,11 @@ export interface SpokenLanguage {
     iso_639_1:    string;
     name:         string;
 }
+
+
+export interface SearchResponse {
+    page:          number;
+    results:       Movie[];
+    total_results: number;
+    total_pages:   number;
+}

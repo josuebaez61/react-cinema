@@ -53,7 +53,7 @@ const Movie = () => {
             <Card className="p-card p-card-black">
                 {
                     movie && genres &&
-                    < >
+                    <div className="animate__animated animate__fadeIn animate__fasters">
                         <div className="p-grid">
                             <div className="p-col-12 p-md-3">
                                 <img className="w-100" src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} alt="" />
@@ -132,7 +132,7 @@ const Movie = () => {
                                 />
                             </div>
                         </div>
-                    </>
+                    </div>
                 }
             </Card>
         </div>

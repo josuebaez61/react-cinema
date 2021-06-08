@@ -1,6 +1,7 @@
 import Axios from 'axios';
 import { GenresResponse } from '../models/Genre';
-import { MovieDetail, NowPlayingResponse } from '../models/Movies';
+import { MovieDetail, NowPlayingResponse, SearchResponse } from '../models/Movies';
+import queryString from 'query-string';
 
 export const theMovieDBAxios = Axios.create({
     baseURL: 'https://api.themoviedb.org/3/',
@@ -22,5 +23,13 @@ export class MoviesService {
 
     static getMovieById(id: string | number): Promise<MovieDetail> {
         return theMovieDBAxios.get(`/movie/${id}`).then(({data}) => data);
+    }
+
+    static searchMovies(query: string, page: number): Promise<SearchResponse> {
+        return theMovieDBAxios.get(`/search/movie${query}`, {
+            params: {
+                page
+            }
+        }).then(({data}) => data)
     }
 }

@@ -20,6 +20,7 @@ import { hideSidebar } from '../store/actions/sidebarActions';
 import Contact from '../views/Contact/Contact';
 import Home from '../views/Home/Home';
 import Movie from '../views/Movie/Movie';
+import Search from '../views/Search/Search';
 
 const AppRouter = () => {
   const { show: showSearch } = useSelector((state: RootState) => state.search);
@@ -46,6 +47,7 @@ const AppRouter = () => {
             <Route exact path="/register" component={Register} />
             <Route exact path="/contacto" component={Contact} />
             <Route exact path="/movie/:id" component={Movie} />
+            <Route exact path="/search" component={Search} />
             <Redirect to="/cartelera" />
           </Switch>
         </div>

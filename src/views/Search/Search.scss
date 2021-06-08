@@ -1,0 +1,11 @@
+.search__title {
+    text-align: center;
+    color: white;
+    font-size: 2rem;
+    font-family: 'Maven Pro', sans-serif;;
+    font-weight: 200;
+    margin: 20px 0px 20px 0px;
+    @media(min-width: 768px) {
+        font-size: 3rem;
+    }
+}

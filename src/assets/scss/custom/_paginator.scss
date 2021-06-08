@@ -1,0 +1,13 @@
+.p-paginator {
+    background-color: black;
+    .p-paginator-page {
+        color: white !important;
+    }
+    .p-paginator-page.p-highlight {
+        color: var(--primary-color) !important;
+    }
+}
+
+.p-paginator .p-paginator-first, .p-paginator .p-paginator-prev, .p-paginator .p-paginator-next, .p-paginator .p-paginator-last {
+    color: var(--primary-color);
+}

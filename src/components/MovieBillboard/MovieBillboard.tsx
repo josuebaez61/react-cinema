@@ -2,6 +2,7 @@ import { Card } from 'primereact/card'
 import React from 'react'
 import { useHistory } from 'react-router'
 import { Movie } from '../../models/Movies'
+import noImageMovie from '../../assets/image/no-image.jpg'
 import './MovieBillboard.scss'
 
 interface MovieBillboardProps {
@@ -13,7 +14,11 @@ const MovieBillboard = ({ movie }: MovieBillboardProps) => {
     const history = useHistory();
 
     const posterHeader = () => {
-        return <img src={ `https://image.tmdb.org/t/p/w500${movie.poster_path}` } alt={ movie.title } />
+        return <img src={ 
+            movie.poster_path 
+            ? `https://image.tmdb.org/t/p/w500${movie.poster_path}` 
+            : noImageMovie 
+        } alt={ movie.title } />
     }
 
     return (
