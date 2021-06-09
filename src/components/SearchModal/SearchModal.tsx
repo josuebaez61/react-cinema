@@ -13,7 +13,7 @@ interface SearchModalProps {
 }
 
 const SearchModal = ({ visible }: SearchModalProps) => {
-    const [formValue, handleChange] = useForm({
+    const [formValue, handleChange, resetForm] = useForm({
         query: ''
     });
     const dispatch = useDispatch();
@@ -22,6 +22,7 @@ const SearchModal = ({ visible }: SearchModalProps) => {
         e.preventDefault();
         dispatch(hideSearchModal());
         history.push(`/search/?query=${ encodeURI(formValue.query) }`);
+        resetForm();
     }
 
     return (

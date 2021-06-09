@@ -91,7 +91,7 @@ const Movie = () => {
                                                     maxValue={10}
                                                     onChange={setTicketsCounter}
                                                 />
-                                                <small className="p-d-block" style={{ color: '#cccc' }} >Cantidad disponible: 100</small>
+                                                <small className="p-d-block" style={{ color: '#cccc' }} >Cantidad disponible: 10</small>
                                             </div>
                                         </div>
                                     </div>
