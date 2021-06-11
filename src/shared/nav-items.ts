@@ -12,7 +12,7 @@ export const navItems = [
         icon: faBuilding
     },
     {
-        url: '/adicionales',
+        url: '/aditionals',
         title: 'Adicionales',
         icon: faPizzaSlice
     },
