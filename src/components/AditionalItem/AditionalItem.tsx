@@ -11,8 +11,8 @@ const AditionalItem = ({ item }: any) => {
     }
 
     return (
-        <div className="p-col-6 p-md-3">
-            <Card className="p-card-black" header={ posterHeader } title={ item.name } ></Card>
+        <div className="aditional-item p-col-6 p-md-3">
+            <Card subTitle={ '$' + 900.9 } className="p-card-black" header={ posterHeader } title={ item.name } ></Card>
         </div>
     )
 }

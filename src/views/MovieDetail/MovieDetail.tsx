@@ -5,7 +5,7 @@ import { Button } from 'primereact/button'
 import { Badge } from 'primereact/badge';
 import { useSelector } from 'react-redux'
 import { RootState } from '../../store'
-import './Movie.scss';
+import './MovieDetail.scss';
 import { useHistory } from 'react-router'
 import CounterInput from '../../components/CounterInput/CounterInput'
 import { Dropdown } from 'primereact/dropdown'
@@ -67,7 +67,6 @@ const Movie = () => {
                                 </div>
                                 <div className="p-text-center">
                                     <h5 style={{ fontSize: '1.3rem' }} className="p-mb-2">Géneros</h5>
-
                                     {
                                         movie.genres.map(genre =>
                                             <Badge
@@ -83,7 +82,7 @@ const Movie = () => {
                                     <div className="p-col-12 p-md-6">
                                         <div className="p-fluid">
                                             <div className="p-field">
-                                                <label>Entradas</label>
+                                                <label>Entradas - $500 x unidad</label>
                                                 <br />
                                                 <CounterInput
                                                     name="tickets"

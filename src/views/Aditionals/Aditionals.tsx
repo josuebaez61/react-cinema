@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { Card } from 'primereact/card';
-import { RadioButton } from 'primereact/radiobutton';
+import { RadioButton, RadioButtonChangeParams } from 'primereact/radiobutton';
 import AditionalsListContainer from '../../components/AditionalsListContainer/AditionalsListContainer';
 import AditionalsList from '../../components/AditionalsList/AditionalsList';
 import { ProgressSpinner } from 'primereact/progressspinner';
@@ -62,20 +62,27 @@ const Aditionals = () => {
 
     }, [])
 
-
+    useEffect(() => {
+        console.log(currentFilter);
+    }, [currentFilter])
 
     return (
         <div className="container p-mt-2 p-mb-2">
             <div className="p-grid">
                 <div className="p-col-12 p-md-2">
-                    <Card className="p-card-black">
-                        <h3>Filtros</h3>
+                    <Card className="p-card-black animate__animated animate__fadeIn" title="Filtros">
                         <div className="p-grid p-mt-2">
                             {
                                 filters.map(filter =>
                                 (
                                     <div key={filter.value} className="p-col-4 p-md-12">
-                                        <RadioButton value={currentFilter} name="filter" onChange={(e) => setCurrentFilter(e.value)} checked={currentFilter === filter.value} disabled={ aditionals.length <= 0 } />
+                                        <RadioButton
+                                            value={filter.value}
+                                            name="currentFilter"
+                                            onChange={(e: RadioButtonChangeParams) => setCurrentFilter(e.value)}
+                                            checked={currentFilter === filter.value}
+                                            disabled={aditionals.length <= 0}
+                                        />
                                         <label htmlFor="city1"> {filter.name}</label>
                                     </div>
                                 ))

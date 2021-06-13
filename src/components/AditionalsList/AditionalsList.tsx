@@ -6,7 +6,7 @@ function AditionalsList({ items }: any ) {
         <div className="p-grid">
 
             {
-                items.map( (aditional:any) => <AditionalItem item={ aditional }/>)
+                items.map( (aditional:any) => <AditionalItem key={ aditional.id } item={ aditional }/>)
             }
             
         </div>

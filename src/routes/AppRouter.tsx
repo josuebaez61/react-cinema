@@ -20,7 +20,7 @@ import { hideSidebar } from '../store/actions/sidebarActions';
 import Aditionals from '../views/Aditionals/Aditionals';
 import Contact from '../views/Contact/Contact';
 import Home from '../views/Home/Home';
-import Movie from '../views/Movie/Movie';
+import MovieDetail from '../views/MovieDetail/MovieDetail';
 import Search from '../views/Search/Search';
 
 const AppRouter = () => {
@@ -47,7 +47,7 @@ const AppRouter = () => {
             <Route exact path="/login" component={Login} />
             <Route exact path="/register" component={Register} />
             <Route exact path="/contacto" component={Contact} />
-            <Route exact path="/movie/:id" component={Movie} />
+            <Route exact path="/movie/:id" component={MovieDetail} />
             <Route exact path="/search" component={Search} />
             <Route exact path="/aditionals" component={Aditionals} />
             <Redirect to="/cartelera" />

@@ -8,6 +8,9 @@
     background-color: $blackBackgroundLowOppacity;
     color: white;
     border-radius: 0;
+    .p-card-title, .p-card-subtitle {
+        color: white;
+    }
 }
 
 .p-divider.p-divider-vertical::before {
