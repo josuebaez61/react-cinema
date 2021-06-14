@@ -3,8 +3,6 @@ import React, { useState } from 'react'
 import { useMovie } from '../../hooks/useMovie'
 import { Button } from 'primereact/button'
 import { Badge } from 'primereact/badge';
-import { useSelector } from 'react-redux'
-import { RootState } from '../../store'
 import './MovieDetail.scss';
 import { useHistory } from 'react-router'
 import CounterInput from '../../components/CounterInput/CounterInput'
@@ -13,7 +11,6 @@ import { useForm } from '../../hooks/useForm'
 
 const Movie = () => {
     const movie = useMovie();
-    const { genres } = useSelector((state: RootState) => state.genres);
     const [ticketsCounter, setTicketsCounter] = useState(0);
     const history = useHistory();
     const [{ tickets, cinema }, handleChange] = useForm({
@@ -52,7 +49,7 @@ const Movie = () => {
         <div className="container p-mt-3 p-mb-3">
             <Card className="p-card p-card-black">
                 {
-                    movie && genres &&
+                    movie &&
                     <div className="animate__animated animate__fadeIn animate__fasters">
                         <div className="p-grid">
                             <div className="p-col-12 p-md-3">
