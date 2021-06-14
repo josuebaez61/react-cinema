@@ -13,8 +13,8 @@ export const useSearch = () => {
     const location = useLocation();
 
     useEffect(() => {
-        const qString = (queryString.parse(location.search) as any).query;
-        setQuery( qString ? qString : '' );
+        const qString = queryString.parse(location.search).query;
+        setQuery( qString && !Array.isArray(qString) ? qString : '' );
         MoviesService.searchMovies(location.search, page)
         .then(data => {
             console.log(data);
