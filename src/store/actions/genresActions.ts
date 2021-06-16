@@ -4,6 +4,7 @@ import { MoviesService } from "../../services/MoviesService";
 export const fetchGenres = createAsyncThunk(
    '[GENRES] Load genres',
    async () => {
-       return await MoviesService.getGenres().then((response) => response.genres);
+    const { genres } = await MoviesService.getGenres();
+    return genres;
    }
 );
