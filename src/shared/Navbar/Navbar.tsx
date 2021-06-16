@@ -48,13 +48,13 @@ const Navbar = () => {
                     <div className="p-d-none p-d-md-inline-block">
                         <div className="search-login p-d-flex">
                             <div>
-                                <button className="text-button"  onClick={ () => handleClick() } >
+                                <NavLink activeClassName="active" to="/cart">
                                     <FontAwesomeIcon icon={faShoppingCart} />
-                                </button>
+                                </NavLink>
                             </div>
                             <CustomDivider longitude="25px" />
                             <div>
-                                <button className="text-button"  onClick={ () => dispatch(showSearchModal()) } >
+                                <button className="text-button" onClick={() => dispatch(showSearchModal())} >
                                     <FontAwesomeIcon icon={faSearch} />
                                 </button>
                             </div>

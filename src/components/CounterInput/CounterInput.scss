@@ -1,0 +1,8 @@
+.counter-input__inputtext--transparent {
+    background-color: transparent;
+    border-color: var(--primary-color);
+    color: white;
+    &:enabled:hover {
+        border-color: var(--primary-color);
+    }
+}

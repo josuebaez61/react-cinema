@@ -18,6 +18,7 @@ import { RootState } from '../store';
 import { showSearchModal } from '../store/actions/searchActions';
 import { hideSidebar } from '../store/actions/sidebarActions';
 import Aditionals from '../views/Aditionals/Aditionals';
+import Cart from '../views/Cart/Cart';
 import Contact from '../views/Contact/Contact';
 import Home from '../views/Home/Home';
 import MovieDetail from '../views/MovieDetail/MovieDetail';
@@ -50,6 +51,7 @@ const AppRouter = () => {
             <Route exact path="/movie/:id" component={MovieDetail} />
             <Route exact path="/search" component={Search} />
             <Route exact path="/aditionals" component={Aditionals} />
+            <Route exact path="/cart" component={Cart} />
             <Redirect to="/cartelera" />
           </Switch>
         </div>

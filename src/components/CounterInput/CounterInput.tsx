@@ -3,16 +3,19 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { Button } from 'primereact/button'
 import { InputText } from 'primereact/inputtext'
 import React, { useEffect, useState } from 'react'
+import './CounterInput.scss'
 
 interface CounterInputProps {
     minValue?: number;
     maxValue?: number;
+    initialValue?: number;
     onChange?: (e:any) => void;
     name?: string;
+    transparent?: boolean
 }
 
-const CounterInput = ({ minValue = 0, maxValue, onChange, name= "" }: CounterInputProps) => {
-    const [value, setValue] = useState(minValue);
+const CounterInput = ({ minValue = 0, maxValue, onChange, name= "", transparent = false, initialValue }: CounterInputProps) => {
+    const [value, setValue] = useState(initialValue ? initialValue : minValue);
     const increment = () => {
         maxValue
         ?
@@ -31,16 +34,18 @@ const CounterInput = ({ minValue = 0, maxValue, onChange, name= "" }: CounterInp
     }, [value])
 
     return (
-        <div className="p-inputgroup">
+        <div className="p-inputgroup counter-input">
             <Button
                 onClick={decrement}
                 type="button"
-                className="p-d-flex p-jc-center"
+                className={`p-d-flex p-jc-center ${ 
+                    transparent ? 'p-button-outlined counter-input__button--transparent' : '' 
+                }`}
             >
                 <FontAwesomeIcon className="p-text-center" icon={faMinus} />
             </Button>
             <InputText
-                className="p-text-center"
+                className={`p-text-center ${ transparent ? 'counter-input__inputtext--transparent' : '' }`}
                 type="number"
                 value={value}
                 min={1}
@@ -49,7 +54,9 @@ const CounterInput = ({ minValue = 0, maxValue, onChange, name= "" }: CounterInp
             <Button
                 type="button"
                 onClick={increment}
-                className="p-d-flex p-jc-center"
+                className={`p-d-flex p-jc-center ${ 
+                    transparent ? 'p-button-outlined counter-input__button--transparent' : '' }`
+                }
             >
                 <FontAwesomeIcon className="p-text-center" icon={faPlus} />
             </Button>
