@@ -2,6 +2,23 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+## Estructura de carpetas
+Descripcion de la estructura del proyecto
+```
+    src
+    |___ views Dentro se encuentran los componentes contenedores de las vistas principales de cada ruta.
+    |___ components Dentro se encuentran componentes reutilizables o de menor tamaño como tarjetas, botones, logos, etc...
+    |___ hooks Ubicacion para hooks customizados
+    |___ models Aqui se encuentran los modelos e interfaces para typescript
+    |___ services Aqui se encuentran los servicios que envian y reciben data. Principalmente HTTP Request.
+    |___ shared Componentes compartidos por todas las pantallas de la app, como el Navbar, el Footer, el Sidebar... etc.
+    |___ routes Aqui estan los componentes enrutadores
+    |___ helpers Solo functions que se pueden usar en otros archivos.
+    |___ auth Aqui estan los componentes relacionados a la autentificacion de usuario, pantalla de Login y Register
+    |___ assets Todo lo relacionado a imagenes, fuentes, audio, scss, etc...
+    |___ store Redux store, acciones, reducers, y un index con el setting del store de Redux. 
+```
+
 ## Available Scripts
 
 In the project directory, you can run:
