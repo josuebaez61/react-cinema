@@ -52,7 +52,7 @@ const Contact = () => {
     }
 
     return (
-        <main className="container">
+        <main className="container p-pb-2 p-pt-2">
             <div className="p-grid p-jc-center">
                 <div className="p-col-12 p-md-6">
                     <Card className="p-card-black">

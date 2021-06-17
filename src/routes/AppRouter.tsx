@@ -19,6 +19,7 @@ import { showSearchModal } from '../store/actions/searchActions';
 import { hideSidebar } from '../store/actions/sidebarActions';
 import Aditionals from '../views/Aditionals/Aditionals';
 import Cart from '../views/Cart/Cart';
+import Cinemas from '../views/Cinemas/Cinemas';
 import Contact from '../views/Contact/Contact';
 import Home from '../views/Home/Home';
 import MovieDetail from '../views/MovieDetail/MovieDetail';
@@ -45,6 +46,7 @@ const AppRouter = () => {
         <div style={{ paddingTop: '60px', minHeight:"calc(100vh - 300px)" }}>
           <Switch>
             <Route exact path="/cartelera" component={Home} />
+            <Route exact path="/cinemas" component={Cinemas} />
             <Route exact path="/login" component={Login} />
             <Route exact path="/register" component={Register} />
             <Route exact path="/contacto" component={Contact} />

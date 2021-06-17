@@ -7,8 +7,8 @@ export const navItems = [
         icon: faTicketAlt
     },
     {
-        url: '/sucursales',
-        title: 'Sucursales',
+        url: '/cinemas',
+        title: 'Cines',
         icon: faBuilding
     },
     {
