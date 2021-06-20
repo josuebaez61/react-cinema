@@ -41,7 +41,7 @@ const Cart = () => {
                             {
                             itemsProvisionales.map
                                 ( (item) => 
-                                    <li>
+                                    <li key={ item.id }>
                                         <CartItem item={ item } />
                                     </li>
                                 )

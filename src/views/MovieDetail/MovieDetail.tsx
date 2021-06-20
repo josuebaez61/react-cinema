@@ -1,5 +1,5 @@
 import { Card } from 'primereact/card'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useMovie } from '../../hooks/useMovie'
 import { Button } from 'primereact/button'
 import { Badge } from 'primereact/badge';
@@ -11,7 +11,8 @@ import { useForm } from '../../hooks/useForm'
 
 const Movie = () => {
     const movie = useMovie();
-    const [ticketsCounter, setTicketsCounter] = useState(0);
+    const [invalidForm, setInvalidForm] = useState(true);
+    const [cinemaIsRequiredError, setCinemaIsRequiredError] = useState(false);
     const history = useHistory();
     const [{ tickets, cinema }, handleChange] = useForm({
         tickets: 1,
@@ -38,12 +39,28 @@ const Movie = () => {
     ]
 
     const handleSubmit = (e: any) => {
-        e.preventDefault()
+        e.preventDefault();
+        if ( !cinema ) {
+            setCinemaIsRequiredError(true);
+            return;
+        } else {
+            setCinemaIsRequiredError(false);
+        }
         console.log({
-            tickets: ticketsCounter,
+            tickets: Number(tickets),
             cinema
-        })
+        });
+        history.push('/cart');
     }
+
+    useEffect(() => {
+        console.log('Contador onAdd en MovieDetail: ', Number(tickets));
+        if ( Number(tickets) < 1 || cinema.length <= 0 ) {
+            setInvalidForm(true);
+        } else {
+            setInvalidForm(false);
+        }
+    }, [tickets, cinema]);
 
     return (
         <div className="container p-mt-3 p-mb-3">
@@ -83,10 +100,10 @@ const Movie = () => {
                                                 <br />
                                                 <CounterInput
                                                     name="tickets"
-                                                    minValue={tickets}
+                                                    minValue={1}
                                                     maxValue={10}
-                                                    onChange={setTicketsCounter}
-                                                />
+                                                    onChange={handleChange}
+                                                    />
                                                 <small className="p-d-block" style={{ color: '#cccc' }} >Cantidad disponible: 10</small>
                                             </div>
                                         </div>
@@ -104,7 +121,9 @@ const Movie = () => {
                                                     options={sucursalesProvisional}
                                                     placeholder="Elige una sucursal"
                                                     onChange={handleChange}
+                                                    className={ cinemaIsRequiredError ?'p-invalid' : '' }
                                                 />
+                                                <small className={`${ cinemaIsRequiredError ? 'p-d-block p-error': 'p-d-none'}`}>Debe elegir una sucursal</small>
                                             </div>
                                         </div>
                                     </div>
@@ -120,11 +139,13 @@ const Movie = () => {
                                     label="Cancelar"
                                 />
                                 <Button
+                                    disabled={ invalidForm }
+                                    loading ={ invalidForm }
                                     form="reservation-form"
                                     type="submit"
                                     icon="pi pi-shopping-cart"
                                     className="p-button-rounded w-100 w-md-auto"
-                                    label="Al carrito"
+                                    label={ invalidForm ? 'Elegí tus entradas' : 'Terminar Compra' }
                                 />
                             </div>
                         </div>
