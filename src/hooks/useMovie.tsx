@@ -5,9 +5,10 @@ import { MoviesService } from "../services/MoviesService";
 
 export const useMovie = () => {
     const [currentMovie, setCurrentMovie] = useState<MovieDetail>();
-    const { id } = useParams<{ id: string }>()
+    let { id } = useParams<{ id: string }>();
+
     useEffect(() => {
-        id && MoviesService.getMovieById( id )
+        id && MoviesService.getMovieById(id)
             .then((movie) => setCurrentMovie(movie));
     }, [id])
     return currentMovie;

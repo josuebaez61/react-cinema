@@ -1,5 +1,5 @@
 import { Card } from 'primereact/card'
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { useMovie } from '../../hooks/useMovie'
 import { Button } from 'primereact/button'
 import { Badge } from 'primereact/badge';
@@ -8,35 +8,25 @@ import { useHistory } from 'react-router'
 import CounterInput from '../../components/CounterInput/CounterInput'
 import { Dropdown } from 'primereact/dropdown'
 import { useForm } from '../../hooks/useForm'
+import { CartContext } from '../../context/CartContext';
+import { CartItem, ItemType } from '../../models/CartItem';
+import { useCinemas } from '../../hooks/useCinemas';
+import { TicketPricesService } from '../../services/TicketPricesService';
+import Swal from 'sweetalert2';
 
 const Movie = () => {
     const movie = useMovie();
     const [invalidForm, setInvalidForm] = useState(true);
     const [cinemaIsRequiredError, setCinemaIsRequiredError] = useState(false);
     const history = useHistory();
+    const cinemas = useCinemas();
+    const [ticketUnitPrice, setTicketUnitPrice] = useState(0);
     const [{ tickets, cinema }, handleChange] = useForm({
         tickets: 1,
         cinema: ''
     });
+    const { addItem, isInCart, removeItem, clear } = useContext(CartContext);
 
-    const sucursalesProvisional = [
-        {
-            id: '1',
-            name: 'Shopping de Palermo'
-        },
-        {
-            id: '2',
-            name: 'Shopping de San Justo'
-        },
-        {
-            id: '3',
-            name: 'Shopping de Liniers'
-        },
-        {
-            id: '4',
-            name: 'Unicenter'
-        },
-    ]
 
     const handleSubmit = (e: any) => {
         e.preventDefault();
@@ -46,14 +36,46 @@ const Movie = () => {
         } else {
             setCinemaIsRequiredError(false);
         }
-        console.log({
-            tickets: Number(tickets),
-            cinema
-        });
-        history.push('/cart');
+
+   
+        if ( !movie ) return;
+
+        const cartItem = new CartItem(
+            movie,
+            Number(tickets),
+            cinema,
+            ItemType.movie,
+            ticketUnitPrice
+        );
+            
+        if ( isInCart(cartItem) ) {
+            Swal.fire({
+                title: 'Error',
+                text: 'Este producto ya se encuentra en su carrito.',
+                icon: 'error',
+                showConfirmButton: true,
+                showCancelButton: true,
+                confirmButtonText: 'Ver en carrito',
+                cancelButtonText: 'Cancelar'
+            }).then((res) => {
+                if(res.isConfirmed) {
+                    history.push('/cart');
+                }
+            });
+            return;
+        } else {
+            addItem(cartItem);
+            history.push('/cart');
+        }
+
     }
 
     useEffect(() => {
+        TicketPricesService.getPriceById('general').then( (ticket: any) => setTicketUnitPrice(ticket.price));
+    }, []);
+
+    useEffect(() => {
+        console.log(cinemas);
         console.log('Contador onAdd en MovieDetail: ', Number(tickets));
         if ( Number(tickets) < 1 || cinema.length <= 0 ) {
             setInvalidForm(true);
@@ -96,7 +118,7 @@ const Movie = () => {
                                     <div className="p-col-12 p-md-6">
                                         <div className="p-fluid">
                                             <div className="p-field">
-                                                <label>Entradas - $500 x unidad</label>
+                                                <label>Entrada general: ${ ticketUnitPrice.toFixed(2) }</label>
                                                 <br />
                                                 <CounterInput
                                                     name="tickets"
@@ -114,11 +136,11 @@ const Movie = () => {
                                                 <label>Sucursal</label>
                                                 <br />
                                                 <Dropdown
-                                                    optionValue="id"
+                                                    // optionValue="id"
                                                     value={cinema}
                                                     name="cinema"
                                                     optionLabel="name"
-                                                    options={sucursalesProvisional}
+                                                    options={cinemas}
                                                     placeholder="Elige una sucursal"
                                                     onChange={handleChange}
                                                     className={ cinemaIsRequiredError ?'p-invalid' : '' }
