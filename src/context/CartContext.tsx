@@ -44,8 +44,8 @@ function CartProvider({ children }: CartProvidersProps) {
         setCart([]);
     }
 
-    const removeItem = (item: CartItem) => {
-        setCart(state => state.filter(i => i !== item));
+    const removeItem = (itemId: string | number) => {
+        setCart(state => state.filter(i => i.itemDetail.id !== itemId));
         return cart;
     }
 

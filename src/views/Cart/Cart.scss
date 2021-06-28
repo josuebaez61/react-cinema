@@ -2,3 +2,18 @@
     list-style: none;
     padding: 0px;
 }
+
+.empty-cart {
+    h3 {
+        font-size: 2rem;
+        margin-bottom: 0.8rem;
+    }
+
+    h4 {
+        font-size: 1.7rem;
+        margin-bottom: 0.8rem;
+    }
+    .empty-cart__link {
+        color: var(--primary-color) !important;
+    }
+}
