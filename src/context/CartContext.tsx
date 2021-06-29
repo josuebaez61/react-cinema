@@ -3,27 +3,23 @@ import { CartItem } from '../models/CartItem';
 
 interface CartContext {
     cart: CartItem[];
-    setCart: any;
-    addItem: any;
-    removeItem: any;
-    clear: any;
-    setItemQuantity: any;
-    getTotal: any
+    addItem: (item: CartItem) => void;
+    setCart: React.Dispatch<React.SetStateAction<CartItem[]>>;
+    removeItem: (itemId: string | number) => CartItem[];
+    setItemQuantity: (item: CartItem, newValue: number) => void;
+    clearCart: () => void;
+    getCartTotalPrice: () => number;
+    setCartWidgetIsVisible: React.Dispatch<React.SetStateAction<boolean>>;
+    cartWidgetIsVisible: boolean;
+    isInCart: (item: CartItem) => boolean;
+    getTotalQuantityOfItems: () => number;
 }
 
 interface CartProvidersProps {
     children: ReactElement<any, any>
 }
 
-export const CartContext = createContext<CartContext | any>({
-    cart: [],
-    setCart: null,
-    addItem: null,
-    removeItem: null,
-    clear: null,
-    setItemQuantity: null,
-    getTotal: null
-});
+export const CartContext = createContext<CartContext>({} as CartContext);
 
 
 function CartProvider({ children }: CartProvidersProps) {
@@ -48,7 +44,7 @@ function CartProvider({ children }: CartProvidersProps) {
         return cart;
     }
 
-    const addItem = (item: CartItem) => {
+    const addItem = (item: CartItem): void => {
         setCart(state => [...state, item]);
     }
 

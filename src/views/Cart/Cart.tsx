@@ -43,7 +43,7 @@ const Cart = () => {
                                     <ul className="cart-item-list">
                                         {
                                             cart.map
-                                                ((cartItem: CartItem) =>
+                                                ((cartItem) =>
                                                     <li key={cartItem.itemDetail.id}>
                                                         <CartItemComponent item={cartItem} />
                                                     </li>

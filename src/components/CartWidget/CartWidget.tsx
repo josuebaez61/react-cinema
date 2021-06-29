@@ -51,7 +51,7 @@ const CartWidget = () => {
                                             <h5>{item.itemDetail.title}</h5>
                                         </div>
                                         <div className="p-col-2">
-                                            x{item.quantity}
+                                            <i className="pi pi-times" style={{ fontSize: '0.5rem'}}></i>{item.quantity}
                                         </div>
                                     </div>
                                 </li>)
