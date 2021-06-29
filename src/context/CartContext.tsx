@@ -1,6 +1,4 @@
-import { icon } from '@fortawesome/fontawesome-svg-core';
 import React, { createContext, ReactElement, useState } from 'react'
-import Swal from 'sweetalert2';
 import { CartItem } from '../models/CartItem';
 
 interface CartContext {
@@ -31,6 +29,7 @@ export const CartContext = createContext<CartContext | any>({
 function CartProvider({ children }: CartProvidersProps) {
 
     const [cart, setCart] = useState<CartItem[]>([]);
+    const [cartWidgetIsVisible, setCartWidgetIsVisible] = useState<boolean>(false);
 
     const isInCart = (item: CartItem): boolean => {
         if (cart.findIndex(el => el.itemDetail.id === item.itemDetail.id) < 0) {
@@ -40,7 +39,7 @@ function CartProvider({ children }: CartProvidersProps) {
         }
     }
 
-    const clear = () => {
+    const clearCart = () => {
         setCart([]);
     }
 
@@ -62,7 +61,7 @@ function CartProvider({ children }: CartProvidersProps) {
         }));
     }
 
-    const getTotal = (): number => {
+    const getCartTotalPrice = (): number => {
         if (cart.length > 0) {
             const totalArray = cart.map(item => item.quantity * item.unit_price);
             const total = totalArray.reduce((accumulator, current) => accumulator + current);
@@ -72,9 +71,18 @@ function CartProvider({ children }: CartProvidersProps) {
         }
     }
 
+    const getTotalQuantityOfItems = () => {
+        let totalQuantity = 0;
+        cart.length > 0 
+        ? (totalQuantity = cart.map(item => item.quantity).reduce((accumulator, current) => accumulator + current))
+        : totalQuantity = 0;
+        return totalQuantity;
+    }
+
     return (
         <CartContext.Provider value={{
-            cart, setCart, addItem, removeItem, clear, setItemQuantity, getTotal, isInCart
+            cart, setCart, addItem, removeItem, clearCart, setItemQuantity, getCartTotalPrice, isInCart, cartWidgetIsVisible,
+            setCartWidgetIsVisible, getTotalQuantityOfItems
         }}>
             {children}
         </CartContext.Provider>

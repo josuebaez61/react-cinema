@@ -32,21 +32,16 @@ const CartItem = ({ item }: CartItemProps) => {
             </div>
             <div className="p-col-9 p-md-10">
                 <div className="p-grid">
-                    <div className="p-col-12 p-md-5">
+                    <div className="p-col-12 p-md-6 p-text-center p-text-md-left">
                         <h3>{item.type === 'movie' && item.itemDetail.title}</h3>
                         <span>{item.cinema.name}</span>
-                        {/* Cantidad <InputText type="number" className="w-20 p-text-center"/> */}
                     </div>
-                    <div className="p-col-6 p-md-2">
-                        {/* <CounterInput 
-                            initialValue={ item.cantidad }
-                            transparent
-                        /> */}
+                    <div className="p-col-12 p-md-2">
+
                         <InputText
-                            className="p-inputtext-sm"
+                            className="p-inputtext-sm w-100"
                             style={{
                                 borderRadius: '5px',
-                                width: '75px'
                             }}
                             type="number"
                             defaultValue={item.quantity}
@@ -54,11 +49,12 @@ const CartItem = ({ item }: CartItemProps) => {
                             onChange={handleChangeQuantity}
                         />
                     </div>
-                    <div className="p-col-6 p-md-4">
+                    <div className="p-col-12 p-md-2">
                         <p className="p-text-center item-price">${(item.unit_price * item.quantity).toFixed(2)}</p>
                     </div>
-                    <div className="col-md-1">
+                    <div className="p-col-12 p-md-2 p-text-center">
                         <Button 
+                            label="Remover"
                             icon="pi pi-times"
                             className="p-button-sm p-button-rounded p-button-danger p-button-outlined" 
                             onClick={ () => removeItem(item.itemDetail.id) }

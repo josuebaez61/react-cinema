@@ -3,14 +3,18 @@
     padding: 0px;
 }
 
+.cart-total-price {
+    font-size: 2rem;
+}
+
 .empty-cart {
     h3 {
         font-size: 2rem;
         margin-bottom: 0.8rem;
     }
 
-    h4 {
-        font-size: 1.7rem;
+    p {
+        font-size: 1.3rem;
         margin-bottom: 0.8rem;
     }
     .empty-cart__link {

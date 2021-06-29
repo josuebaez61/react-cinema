@@ -1,0 +1,15 @@
+.cart-widget {
+    position: absolute;
+    top: 60px;
+    right: 397px;
+    background: white;
+    width: 300px;
+    color: black;
+
+    .cart-widget__list {
+        margin-bottom: 0.8rem;
+        max-height: 284px;
+        overflow-y: scroll;
+        overflow-x: hidden;
+    }
+}

@@ -25,7 +25,7 @@ const Movie = () => {
         tickets: 1,
         cinema: ''
     });
-    const { addItem, isInCart, removeItem, clear } = useContext(CartContext);
+    const { addItem, isInCart } = useContext(CartContext);
 
 
     const handleSubmit = (e: any) => {
@@ -50,12 +50,12 @@ const Movie = () => {
             
         if ( isInCart(cartItem) ) {
             Swal.fire({
-                title: 'Error',
-                text: 'Este producto ya se encuentra en su carrito.',
-                icon: 'error',
+                title: '¡Atención!',
+                text: 'Ya agregaste este producto a tu carrito.',
+                icon: 'warning',
                 showConfirmButton: true,
                 showCancelButton: true,
-                confirmButtonText: 'Ver en carrito',
+                confirmButtonText: 'Ver en el carrito',
                 cancelButtonText: 'Cancelar'
             }).then((res) => {
                 if(res.isConfirmed) {
@@ -75,8 +75,6 @@ const Movie = () => {
     }, []);
 
     useEffect(() => {
-        console.log(cinemas);
-        console.log('Contador onAdd en MovieDetail: ', Number(tickets));
         if ( Number(tickets) < 1 || cinema.length <= 0 ) {
             setInvalidForm(true);
         } else {

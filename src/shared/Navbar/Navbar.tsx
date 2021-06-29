@@ -1,6 +1,6 @@
-import React, { useContext } from 'react'
+import React, { useContext, useEffect } from 'react'
 import './Navbar.scss'
-import { Link, NavLink } from 'react-router-dom';
+import { Link, NavLink, useHistory } from 'react-router-dom';
 import Logo from '../../components/Logo/Logo';
 import { Button } from 'primereact/button';
 import { useDispatch, useSelector } from 'react-redux';
@@ -13,17 +13,20 @@ import { RootState } from '../../store';
 import { showSearchModal } from '../../store/actions/searchActions';
 import { CartContext } from '../../context/CartContext';
 import { Badge } from 'primereact/badge';
+import CartWidget from '../../components/CartWidget/CartWidget';
+import { animate } from '../../helpers/animate';
 
 const Navbar = () => {
 
-    const { cart } = useContext(CartContext);
+    const { cart, setCartWidgetIsVisible, getTotalQuantityOfItems } = useContext(CartContext);
     const { show } = useSelector((state: RootState) => state.sidebar)
     const dispatch = useDispatch();
+    const history = useHistory();
 
-
-    const handleClick = () => {
-        console.log('click');
-    }
+    useEffect(() => {
+        cart.length > 0 &&
+        animate('.cart-button__badge', 'pulse');
+    }, [cart]);
 
     return (
         <nav>
@@ -51,14 +54,20 @@ const Navbar = () => {
                     </ul>
                     <div className="p-d-none p-d-md-inline-block">
                         <div className="search-login p-d-flex">
-                            <div className="cart-icon-link">
-                                <NavLink style={{ position: 'relative' }} activeClassName="active" to="/cart">
+                            <div>
+                                <button
+                                    style={{ position: 'relative' }}
+                                    className="text-button cart-button"
+                                    onClick={() => cart.length > 0 
+                                        ? setCartWidgetIsVisible(true) 
+                                        : history.push('/cart')}
+                                >
                                     <FontAwesomeIcon icon={faShoppingCart} />
                                     {
-                                        cart.length > 0 &&
-                                        <Badge size="normal" value={ `${cart.length}` }/>
+                                        cart.length > 0 && 
+                                        <Badge className="cart-button__badge" size="normal" value={`${getTotalQuantityOfItems()}`} />
                                     }
-                                </NavLink>
+                                </button>
                             </div>
                             <CustomDivider longitude="25px" />
                             <div>
@@ -74,7 +83,8 @@ const Navbar = () => {
                     </div>
                 </div>
             </div>
-        </nav>
+            <CartWidget />
+        </nav >
     )
 }
 

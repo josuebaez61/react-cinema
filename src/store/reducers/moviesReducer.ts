@@ -1,7 +1,6 @@
 import { createReducer } from "@reduxjs/toolkit";
 import { Movie } from "../../models/Movies";
 import { fetchNowPlaying } from "../actions/moviesActions";
-import { hideSearchModal, showSearchModal } from "../actions/searchActions";
 
 interface MoviesState {
     results: Array<Movie>,

@@ -60,15 +60,14 @@ nav {
     }
 }
 
-.cart-icon-link {
-    position: relative;
-    .p-badge {
-        font-size: 10px;
-        position: absolute;
+.cart-button {
+    .cart-button__badge {
+        font-size: 11px;
         top: -7px;
-        right: -10px;
-        min-width: 1rem;
-        height: 1rem;
-        line-height: 1rem;
+        left: 20px;
+        position: absolute;
+        min-width: 1.2rem;
+        height: 1.2rem;
+        line-height: 1.2rem;
     }
 }

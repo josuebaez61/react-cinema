@@ -43,7 +43,7 @@ const AppRouter = () => {
 
         {/* A <Switch> looks through its children <Route>s and
               renders the first one that matches the current URL. */}
-        <div style={{ paddingTop: '60px', minHeight:"calc(100vh - 300px)" }}>
+        <div style={{ paddingTop: '60px', minHeight: "calc(100vh - 300px)" }}>
           <Switch>
             <Route exact path="/cartelera" component={Home} />
             <Route exact path="/cinemas" component={Cinemas} />
@@ -58,11 +58,11 @@ const AppRouter = () => {
           </Switch>
         </div>
         <Footer />
-        <SearchModal visible={ showSearch } />
-        <FloatingButton 
+        <SearchModal visible={showSearch} />
+        <FloatingButton
           className="p-d-flex p-d-md-none animate__animated animate__fadeInUp"
-          onClick={ onFloatingButtonClick }
-          icon={ faSearch }
+          onClick={onFloatingButtonClick}
+          icon={faSearch}
           position="right"
         />
       </div>
