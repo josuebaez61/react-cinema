@@ -17,7 +17,8 @@ import Sidebar from '../shared/Sidebar/Sidebar';
 import { RootState } from '../store';
 import { showSearchModal } from '../store/actions/searchActions';
 import { hideSidebar } from '../store/actions/sidebarActions';
-import Aditionals from '../views/Aditionals/Aditionals';
+import Additional from '../views/Additional/Additional';
+import Additionals from '../views/Additionals/Additionals';
 import Cart from '../views/Cart/Cart';
 import Cinemas from '../views/Cinemas/Cinemas';
 import Contact from '../views/Contact/Contact';
@@ -52,7 +53,8 @@ const AppRouter = () => {
             <Route exact path="/contacto" component={Contact} />
             <Route exact path="/movie/:id" component={MovieDetail} />
             <Route exact path="/search" component={Search} />
-            <Route exact path="/aditionals" component={Aditionals} />
+            <Route exact path="/additionals" component={Additionals} />
+            <Route exact path="/additional/:id" component={Additional} />
             <Route exact path="/cart" component={Cart} />
             <Redirect to="/cartelera" />
           </Switch>

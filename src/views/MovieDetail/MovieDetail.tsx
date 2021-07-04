@@ -43,9 +43,9 @@ const Movie = () => {
         const cartItem = new CartItem(
             movie,
             Number(tickets),
-            cinema,
             ItemType.movie,
-            ticketUnitPrice
+            ticketUnitPrice,
+            cinema,
         );
             
         if ( isInCart(cartItem) ) {
@@ -165,7 +165,7 @@ const Movie = () => {
                                     type="submit"
                                     icon="pi pi-shopping-cart"
                                     className="p-button-rounded w-100 w-md-auto"
-                                    label={ invalidForm ? 'Elegí tus entradas' : 'Terminar Compra' }
+                                    label={ invalidForm ? 'Elegí tus entradas' : 'Al carrito' }
                                 />
                             </div>
                         </div>

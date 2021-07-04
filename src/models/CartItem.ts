@@ -1,28 +1,29 @@
+import { Additional } from "./Additional";
 import { Cinema } from "./Cinema";
 import { MovieDetail } from "./Movies";
 
 export enum ItemType {
     movie = 'movie',
-    aditional = 'aditional'
+    additional = 'additional'
 }
 
 export class CartItem {
-    itemDetail: MovieDetail; // TODO tambien deberia de ser tipo Aditional
+    itemDetail: MovieDetail | Additional; // TODO tambien deberia de ser tipo Aditional
     quantity: number;
-    cinema: Cinema; 
+    cinema: Cinema | null = null; 
     type: ItemType;
     unit_price: number;
     constructor( 
-        itemDetail: MovieDetail,
+        itemDetail: MovieDetail | Additional,
         quantity: number,
-        cinema: Cinema,
         type: ItemType,
-        unit_price: number
+        unit_price: number,
+        cinema?: Cinema,
     ) {
         this.itemDetail = itemDetail;
         this.quantity = quantity;
-        this.cinema = cinema;
         this.type = type;
         this.unit_price = unit_price;
+        cinema && (this.cinema = cinema);
     }
 }

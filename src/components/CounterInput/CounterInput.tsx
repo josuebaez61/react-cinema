@@ -6,7 +6,7 @@ import React, { RefObject, useEffect, useRef, useState } from 'react'
 import './CounterInput.scss'
 
 export interface CounterInputChangeEvent {
-    target: HTMLInputElement | object;
+    target: HTMLInputElement;
     minValue: number ;
     maxValue: number | undefined;
 }
@@ -36,8 +36,8 @@ const CounterInput = ({ minValue = 0, maxValue, onChange, name = "", transparent
     }
 
     useEffect(() => {
-        onChange && onChange({
-            target: inputRef.current ? inputRef.current : {},
+        inputRef.current && onChange && onChange({
+            target: inputRef.current,
             minValue,
             maxValue
         });

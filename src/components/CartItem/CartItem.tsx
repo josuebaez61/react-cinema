@@ -6,6 +6,8 @@ import './CartItem.scss'
 import { CartItem as CartItemModel, ItemType } from '../../models/CartItem'
 import { CartContext } from '../../context/CartContext'
 import { Button } from 'primereact/button';
+import { MovieDetail } from '../../models/Movies'
+import { Additional } from '../../models/Additional'
 
 interface CartItemProps {
     item: CartItemModel
@@ -17,7 +19,9 @@ const CartItem = ({ item }: CartItemProps) => {
 
     const getImageSource = () => {
         if (item.type === ItemType.movie) {
-            return `https://image.tmdb.org/t/p/w500${item.itemDetail.poster_path}`;
+            return `https://image.tmdb.org/t/p/w500${(item.itemDetail as MovieDetail).poster_path}`;
+        } else {
+            return (item.itemDetail as Additional).image
         }
     }
 
@@ -33,8 +37,14 @@ const CartItem = ({ item }: CartItemProps) => {
             <div className="p-col-9 p-md-10">
                 <div className="p-grid">
                     <div className="p-col-12 p-md-6 p-text-center p-text-md-left">
-                        <h3>{item.type === 'movie' && item.itemDetail.title}</h3>
-                        <span>{item.cinema.name}</span>
+                        <h3>
+                            {
+                                item.type === 'movie'
+                                    ? (item.itemDetail as MovieDetail).title
+                                    : (item.itemDetail as Additional).name
+                            }
+                        </h3>
+                        <span>{item.cinema?.name}</span>
                     </div>
                     <div className="p-col-12 p-md-2">
 
@@ -53,11 +63,11 @@ const CartItem = ({ item }: CartItemProps) => {
                         <p className="p-text-center item-price">${(item.unit_price * item.quantity).toFixed(2)}</p>
                     </div>
                     <div className="p-col-12 p-md-2 p-text-center">
-                        <Button 
+                        <Button
                             label="Remover"
                             icon="pi pi-times"
-                            className="p-button-sm p-button-rounded p-button-danger p-button-outlined" 
-                            onClick={ () => removeItem(item.itemDetail.id) }
+                            className="p-button-sm p-button-rounded p-button-danger p-button-outlined"
+                            onClick={() => removeItem(item.itemDetail.id)}
                         />
                     </div>
                 </div>

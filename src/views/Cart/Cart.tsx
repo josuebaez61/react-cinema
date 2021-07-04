@@ -9,11 +9,12 @@ import { CartContext } from '../../context/CartContext'
 import { CartItem } from '../../models/CartItem'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faFrown, faSmileWink } from '@fortawesome/free-solid-svg-icons'
-import { Link } from 'react-router-dom'
+import { Link, useHistory } from 'react-router-dom'
 import Swal from 'sweetalert2'
 
 const Cart = () => {
 
+    const history = useHistory();
     const { cart, getCartTotalPrice, clearCart } = useContext(CartContext);
 
     const handleClearCart = () => {
@@ -56,12 +57,18 @@ const Cart = () => {
                                 </div>
                                 <div className="p-col-12">
                                     <div className="p-grid p-jc-between">
-                                        <div className="p-col-12 p-md-3">
+                                        <div className="p-col-12 p-md-5">
+                                            <Button 
+                                                onClick={ history.goBack } 
+                                                icon="pi pi-arrow-left" 
+                                                label="Atrás" 
+                                                className="p-d-inline p-button-primary w-100 w-md-auto p-mr-2"
+                                            />
                                             <Button 
                                                 onClick={ handleClearCart } 
                                                 icon="pi pi-trash" 
                                                 label="Vaciar carrito" 
-                                                className="p-button-danger w-100 w-md-auto"
+                                                className="p-d-inline p-button-danger w-100 w-md-auto"
                                             />
                                         </div>
                                         <div className="p-col-12 p-md-3 p-text-center p-text-md-right">
@@ -75,7 +82,7 @@ const Cart = () => {
                                 <h3 className="p-text-center">El carrito está vacío</h3>
                                 <FontAwesomeIcon className="p-mb-2" size='3x' icon={faFrown} />
                                 <p className="p-text-center">
-                                    Podrías llenarlo explorando nuestra <Link className="empty-cart__link" to="/cartera">Cartelera</Link> o nuestros <Link className="empty-cart__link" to="/aditionals">Adicionales</Link>
+                                    Podrías llenarlo explorando nuestra <Link className="empty-cart__link" to="/cartera">Cartelera</Link> o nuestros <Link className="empty-cart__link" to="/additionals">Adicionales</Link>
                                 </p>
                                 <FontAwesomeIcon size='3x' icon={faSmileWink} />
                             </div>
