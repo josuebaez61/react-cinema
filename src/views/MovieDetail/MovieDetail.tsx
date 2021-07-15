@@ -13,6 +13,8 @@ import { CartItem, ItemType } from '../../models/CartItem';
 import { useCinemas } from '../../hooks/useCinemas';
 import { TicketPricesService } from '../../services/TicketPricesService';
 import Swal from 'sweetalert2';
+import { useSelector } from 'react-redux';
+import { RootState } from '../../store';
 
 const Movie = () => {
     const movie = useMovie();
@@ -26,19 +28,18 @@ const Movie = () => {
         cinema: ''
     });
     const { addItem, isInCart } = useContext(CartContext);
-
+    const { uid } = useSelector((state: RootState) => state.auth)
 
     const handleSubmit = (e: any) => {
         e.preventDefault();
-        if ( !cinema ) {
+        if (!cinema) {
             setCinemaIsRequiredError(true);
             return;
         } else {
             setCinemaIsRequiredError(false);
         }
 
-   
-        if ( !movie ) return;
+        if (!movie) return;
 
         const cartItem = new CartItem(
             movie,
@@ -47,8 +48,8 @@ const Movie = () => {
             ticketUnitPrice,
             cinema,
         );
-            
-        if ( isInCart(cartItem) ) {
+
+        if (isInCart(cartItem)) {
             Swal.fire({
                 title: '¡Atención!',
                 text: 'Ya agregaste este producto a tu carrito.',
@@ -58,7 +59,7 @@ const Movie = () => {
                 confirmButtonText: 'Ver en el carrito',
                 cancelButtonText: 'Cancelar'
             }).then((res) => {
-                if(res.isConfirmed) {
+                if (res.isConfirmed) {
                     history.push('/cart');
                 }
             });
@@ -71,11 +72,11 @@ const Movie = () => {
     }
 
     useEffect(() => {
-        TicketPricesService.getPriceById('general').then( (ticket: any) => setTicketUnitPrice(ticket.price));
+        TicketPricesService.getPriceById('general').then((ticket: any) => setTicketUnitPrice(ticket.price));
     }, []);
 
     useEffect(() => {
-        if ( Number(tickets) < 1 || cinema.length <= 0 ) {
+        if (Number(tickets) < 1 || cinema.length <= 0) {
             setInvalidForm(true);
         } else {
             setInvalidForm(false);
@@ -116,14 +117,14 @@ const Movie = () => {
                                     <div className="p-col-12 p-md-6">
                                         <div className="p-fluid">
                                             <div className="p-field">
-                                                <label>Entrada general: ${ ticketUnitPrice.toFixed(2) }</label>
+                                                <label>Entrada general: ${ticketUnitPrice.toFixed(2)}</label>
                                                 <br />
                                                 <CounterInput
                                                     name="tickets"
                                                     minValue={1}
                                                     maxValue={10}
                                                     onChange={handleChange}
-                                                    />
+                                                />
                                                 <small className="p-d-block" style={{ color: '#cccc' }} >Cantidad disponible: 10</small>
                                             </div>
                                         </div>
@@ -141,9 +142,9 @@ const Movie = () => {
                                                     options={cinemas}
                                                     placeholder="Elige una sucursal"
                                                     onChange={handleChange}
-                                                    className={ cinemaIsRequiredError ?'p-invalid' : '' }
+                                                    className={cinemaIsRequiredError ? 'p-invalid' : ''}
                                                 />
-                                                <small className={`${ cinemaIsRequiredError ? 'p-d-block p-error': 'p-d-none'}`}>Debe elegir una sucursal</small>
+                                                <small className={`${cinemaIsRequiredError ? 'p-d-block p-error' : 'p-d-none'}`}>Debe elegir una sucursal</small>
                                             </div>
                                         </div>
                                     </div>
@@ -158,15 +159,40 @@ const Movie = () => {
                                     className="p-button-danger p-mb-2 p-mb-md-0  p-mr-md-1 p-button-rounded w-100 w-md-auto"
                                     label="Cancelar"
                                 />
-                                <Button
-                                    disabled={ invalidForm }
-                                    loading ={ invalidForm }
-                                    form="reservation-form"
-                                    type="submit"
-                                    icon="pi pi-shopping-cart"
-                                    className="p-button-rounded w-100 w-md-auto"
-                                    label={ invalidForm ? 'Elegí tus entradas' : 'Al carrito' }
-                                />
+                                {
+                                    invalidForm
+                                        ?
+                                        <Button
+                                            disabled={true}
+                                            loading={true}
+                                            form="reservation-form"
+                                            type="submit"
+                                            icon="pi pi-shopping-cart"
+                                            className="p-button-rounded w-100 w-md-auto"
+                                            label='Elegí tus entradas'
+                                        />
+                                        :
+                                        (
+                                            uid
+                                                ?
+                                                <Button
+                                                    form="reservation-form"
+                                                    type="submit"
+                                                    icon="pi pi-shopping-cart"
+                                                    className="p-button-rounded w-100 w-md-auto"
+                                                    label='Al carrito'
+                                                />
+                                                :
+                                                <Button
+                                                    onClick={() => history.push('/login')}
+                                                    form="reservation-form"
+                                                    type="button"
+                                                    icon="pi pi-key"
+                                                    className="p-button-rounded w-100 w-md-auto"
+                                                    label='Debe autenticarse'
+                                                />
+                                        )
+                                }
                             </div>
                         </div>
                     </div>

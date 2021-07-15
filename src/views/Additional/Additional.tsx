@@ -10,11 +10,14 @@ import { CartContext } from '../../context/CartContext'
 import Swal from 'sweetalert2'
 import { ProgressSpinner } from 'primereact/progressspinner'
 import './Additional.scss'
+import { RootState } from '../../store'
+import { useSelector } from 'react-redux'
 const Additional = () => {
     const { additional, loading } = useAdditional();
     const [quantity, setQuantity] = useState(0);
     const { addItem, isInCart } = useContext(CartContext);
     const history = useHistory();
+    const { uid } = useSelector((state: RootState) => state.auth)
     const toCart = () => {
         const item = new CartItem(
             (additional as AdditionalType),
@@ -67,7 +70,7 @@ const Additional = () => {
                                     <div className="p-col-6">
                                         <div className="p-fluid">
                                             <label htmlFor="">Precio</label>
-                                            <p className="additional-item__price">${(additional?.price)?.toFixed(2)}</p>
+                                            <p className="additional-item__price">${(additional?.price)?.toFixed(2)} x Unidad.</p>
                                         </div>
                                     </div>
                                     <div className="p-col-6">
@@ -95,13 +98,26 @@ const Additional = () => {
                                     className="p-button-danger p-mb-2 p-mb-md-0  p-mr-md-1 p-button-rounded w-100 w-md-auto"
                                     label="Atrás"
                                 />
-                                <Button
-                                    onClick={toCart}
-                                    type="button"
-                                    icon="pi pi-shopping-cart"
-                                    className="p-button-rounded w-100 w-md-auto"
-                                    label="Al carrito"
-                                />
+                                {
+                                    uid
+                                        ?
+                                        <Button
+                                            onClick={toCart}
+                                            type="button"
+                                            icon="pi pi-shopping-cart"
+                                            className="p-button-rounded w-100 w-md-auto"
+                                            label="Al carrito"
+                                        />
+                                        :
+                                        <Button
+                                            onClick={() => history.push('/login')}
+                                            form="reservation-form"
+                                            type="button"
+                                            icon="pi pi-key"
+                                            className="p-button-rounded w-100 w-md-auto"
+                                            label='Debe autenticarse'
+                                        />
+                                }
                             </div>
                         </div>
                     </Card>

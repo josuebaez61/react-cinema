@@ -20,12 +20,13 @@ const Navbar = () => {
 
     const { cart, setCartWidgetIsVisible, getTotalQuantityOfItems } = useContext(CartContext);
     const { show } = useSelector((state: RootState) => state.sidebar)
+    const { displayName, uid, email } = useSelector((state: RootState) => state.auth)
     const dispatch = useDispatch();
     const history = useHistory();
 
     useEffect(() => {
         cart.length > 0 &&
-        animate('.cart-button__badge', 'pulse');
+            animate('.cart-button__badge', 'pulse');
     }, [cart]);
 
     return (
@@ -54,30 +55,39 @@ const Navbar = () => {
                     </ul>
                     <div className="p-d-none p-d-md-inline-block">
                         <div className="search-login p-d-flex">
+                            {
+                                uid
+                                && < >
+                                    <div>
+                                        <button
+                                            style={{ position: 'relative' }}
+                                            className="text-button cart-button"
+                                            onClick={() => cart.length > 0
+                                                ? setCartWidgetIsVisible(true)
+                                                : history.push('/cart')}
+                                        >
+                                            <FontAwesomeIcon icon={faShoppingCart} />
+                                            {
+                                                cart.length > 0 &&
+                                                <Badge className="cart-button__badge" size="normal" value={`${getTotalQuantityOfItems()}`} />
+                                            }
+                                        </button>
+                                    </div>
+                                    <CustomDivider longitude="25px" />
+                                    <div>
+                                        <button className="text-button" onClick={() => dispatch(showSearchModal())} >
+                                            <FontAwesomeIcon icon={faSearch} />
+                                        </button>
+                                    </div>
+                                    <CustomDivider longitude="25px" />
+                                </>
+                            }
                             <div>
-                                <button
-                                    style={{ position: 'relative' }}
-                                    className="text-button cart-button"
-                                    onClick={() => cart.length > 0 
-                                        ? setCartWidgetIsVisible(true) 
-                                        : history.push('/cart')}
-                                >
-                                    <FontAwesomeIcon icon={faShoppingCart} />
-                                    {
-                                        cart.length > 0 && 
-                                        <Badge className="cart-button__badge" size="normal" value={`${getTotalQuantityOfItems()}`} />
-                                    }
-                                </button>
-                            </div>
-                            <CustomDivider longitude="25px" />
-                            <div>
-                                <button className="text-button" onClick={() => dispatch(showSearchModal())} >
-                                    <FontAwesomeIcon icon={faSearch} />
-                                </button>
-                            </div>
-                            <CustomDivider longitude="25px" />
-                            <div>
-                                <NavLink activeClassName="active" to="/login">INGRESAR</NavLink>
+                                {
+                                    uid
+                                        ? <NavLink activeClassName="active" to="/user-screen">{displayName}</NavLink>
+                                        : <NavLink activeClassName="active" to="/login">INGRESAR</NavLink>
+                                }
                             </div>
                         </div>
                     </div>

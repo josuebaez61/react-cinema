@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { SyntheticEvent, useContext } from 'react'
 import { InputText } from 'primereact/inputtext'
 import noImage from '../../assets/image/no-image.jpg'
 import CounterInput from '../CounterInput/CounterInput'
@@ -8,6 +8,8 @@ import { CartContext } from '../../context/CartContext'
 import { Button } from 'primereact/button';
 import { MovieDetail } from '../../models/Movies'
 import { Additional } from '../../models/Additional'
+import { InputNumber, InputNumberChangeParams, InputNumberValueChangeParams } from 'primereact/inputnumber';
+
 
 interface CartItemProps {
     item: CartItemModel
@@ -25,8 +27,8 @@ const CartItem = ({ item }: CartItemProps) => {
         }
     }
 
-    const handleChangeQuantity = (e: any) => {
-        setItemQuantity(item, Number(e.target.value));
+    const handleChangeQuantity = (e: InputNumberChangeParams) => {
+        setItemQuantity(item, e.value);
     }
 
     return (
@@ -47,17 +49,20 @@ const CartItem = ({ item }: CartItemProps) => {
                         <span>{item.cinema?.name}</span>
                     </div>
                     <div className="p-col-12 p-md-2">
-
-                        <InputText
-                            className="p-inputtext-sm w-100"
-                            style={{
-                                borderRadius: '5px',
-                            }}
-                            type="number"
-                            defaultValue={item.quantity}
-                            min={1}
-                            onChange={handleChangeQuantity}
-                        />
+                        <div className="p-field p-fluid">
+                            <InputNumber
+                                className="p-inputtext-sm w-100"
+                                style={{
+                                    borderRadius: '5px',
+                                }}
+                                value={item.quantity}
+                                min={1}
+                                max={100}
+                                onChange={handleChangeQuantity}
+                                showButtons
+                                onFocus={(e: React.FocusEvent<HTMLInputElement>) => e.target.blur()}
+                            />
+                        </div>
                     </div>
                     <div className="p-col-12 p-md-2">
                         <p className="p-text-center item-price">${(item.unit_price * item.quantity).toFixed(2)}</p>
