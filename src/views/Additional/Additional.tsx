@@ -12,6 +12,7 @@ import { ProgressSpinner } from 'primereact/progressspinner'
 import './Additional.scss'
 import { RootState } from '../../store'
 import { useSelector } from 'react-redux'
+import { InputNumber } from 'primereact/inputnumber'
 const Additional = () => {
     const { additional, loading } = useAdditional();
     const [quantity, setQuantity] = useState(0);
@@ -67,23 +68,30 @@ const Additional = () => {
                                     <div className="p-col-12">
                                         <p>{additional?.description}</p>
                                     </div>
-                                    <div className="p-col-6">
+                                    <div className="p-col-12 p-md-6">
                                         <div className="p-fluid">
                                             <label htmlFor="">Precio</label>
                                             <p className="additional-item__price">${(additional?.price)?.toFixed(2)} x Unidad.</p>
                                         </div>
                                     </div>
-                                    <div className="p-col-6">
+                                    <div className="p-col-12 p-md-6">
                                         <div className="p-fluid">
                                             <div className="p-field">
                                                 <label htmlFor="quantity">Cantidad</label>
-                                                <CounterInput
+                                                <InputNumber
+                                                    value={quantity}
                                                     name="tickets"
-                                                    minValue={1}
-                                                    maxValue={10}
-                                                    onChange={(e) => setQuantity(Number(e.target.value))}
+                                                    min={1}
+                                                    max={10}
+                                                    onChange={(e) => setQuantity(e.value)}
+                                                    onFocus={(e) => e.target.blur()}
+                                                    showButtons
+                                                    buttonLayout="horizontal"
+                                                    decrementButtonClassName="p-button-primary"
+                                                    decrementButtonIcon="pi pi-minus"
+                                                    incrementButtonClassName="p-button-primary"
+                                                    incrementButtonIcon="pi pi-plus"
                                                 />
-                                                {/* <InputText type="number" /> */}
                                             </div>
                                         </div>
                                     </div>

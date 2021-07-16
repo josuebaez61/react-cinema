@@ -2,7 +2,7 @@ import { Button } from 'primereact/button'
 import { Card } from 'primereact/card'
 import { Divider } from 'primereact/divider'
 import { InputText } from 'primereact/inputtext'
-import React, { FormEvent } from 'react'
+import React, { FormEvent, useState } from 'react'
 import { Link, useHistory } from 'react-router-dom'
 import Swal from 'sweetalert2'
 import { fb } from '../../firebase'
@@ -13,6 +13,7 @@ import './Login.scss'
 const Login = () => {
 
     const { width: windowWidth } = useWindowSize();
+    const [isLoading, setIsLoading] = useState(false);
     const history = useHistory();
     const [formValues, handleChange, resetForm] = useForm({
         email: '',
@@ -23,6 +24,7 @@ const Login = () => {
 
     const handleSubmit = (e: FormEvent) => {
         e.preventDefault();
+        setIsLoading(true);
         fb.auth().signInWithEmailAndPassword(email, password)
             .then(({ user }) => {
                 if (user?.uid) {
@@ -43,7 +45,8 @@ const Login = () => {
                         text: err.message
                     })
                 }
-            });
+            })
+            .finally(() => setIsLoading(false));
     }
 
 
@@ -71,7 +74,7 @@ const Login = () => {
                                                 <label htmlFor="password">Contraseña</label>
                                                 <InputText onChange={handleChange} value={password} name="password" id="password" type="password" />
                                             </div>
-                                            <Button className="p-mt-2 p-button-rounded" label="Login"></Button>
+                                            <Button disabled={isLoading} className="p-mt-2 p-button-rounded" label="Login"></Button>
                                             <div className="p-d-flex p-jc-between p-mt-2">
                                                 <Link to="/reset-password">Olvidé mi clave</Link>
                                                 <Link to="/register">Registrarse</Link>

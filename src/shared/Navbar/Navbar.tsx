@@ -85,7 +85,7 @@ const Navbar = () => {
                             <div>
                                 {
                                     uid
-                                        ? <NavLink activeClassName="active" to="/user-screen">{displayName}</NavLink>
+                                        ? <NavLink activeClassName="active" to="/user-screen">{email}</NavLink>
                                         : <NavLink activeClassName="active" to="/login">INGRESAR</NavLink>
                                 }
                             </div>

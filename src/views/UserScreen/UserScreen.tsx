@@ -13,12 +13,13 @@ const UserScreen = () => {
     const { displayName, email, uid } = useSelector((state: RootState) => state.auth);
     return (
         <div className="container p-pb-2 p-pt-2">
-            <Card className="p-card-black" footer={() => <CartFooter dispatch={dispatch} />}>
-                <h2>{displayName} <small>/ {uid}</small></h2>
-                <Divider />
-                <p>{email}</p>
-
-            </Card>
+            <div className="p-grid p-jc-center">
+                <div className="p-col-12 p-md-6">
+                    <Card className="p-card-black" footer={() => <CartFooter dispatch={dispatch} />}>
+                        <h2 className="p-text-center">{email}</h2>
+                    </Card>
+                </div>
+            </div>
         </div>
     )
 }
@@ -35,7 +36,7 @@ const CartFooter = ({ dispatch }: any) => {
     }
 
     return (
-        <div className="p-d-flex p-jc-end">
+        <div className="p-d-flex p-jc-center">
             <Button onClick={handleLogout} className="p-button-danger" label="Cerrar sesión" />
         </div>
     )
