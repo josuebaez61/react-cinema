@@ -72,7 +72,7 @@ const Movie = () => {
     }
 
     useEffect(() => {
-        TicketPricesService.getPriceById('general').then((ticket: any) => setTicketUnitPrice(ticket.price));
+        movie && TicketPricesService.getPriceById('general').then((ticket: any) => setTicketUnitPrice(ticket.price));
     }, []);
 
     useEffect(() => {

@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { MouseEvent, useContext } from 'react'
 import './CartItem.scss'
 import { CartItem as CartItemModel, ItemType } from '../../models/CartItem'
 import { CartContext } from '../../context/CartContext'
@@ -6,6 +6,7 @@ import { Button } from 'primereact/button';
 import { MovieDetail } from '../../models/Movies'
 import { Additional } from '../../models/Additional'
 import { InputNumber, InputNumberChangeParams } from 'primereact/inputnumber';
+import { useHistory } from 'react-router-dom';
 
 
 interface CartItemProps {
@@ -14,6 +15,7 @@ interface CartItemProps {
 
 const CartItem = ({ item }: CartItemProps) => {
 
+    const history = useHistory();
     const { setItemQuantity, removeItem } = useContext(CartContext);
 
     const getImageSource = () => {
@@ -28,8 +30,16 @@ const CartItem = ({ item }: CartItemProps) => {
         setItemQuantity(item, e.value);
     }
 
+    const handleClickOnItem = (e: MouseEvent) => {
+        if (item.type === 'movie') {
+            history.push(`/movie/${item.itemDetail.id}`)
+        } else {
+            history.push(`/additional/${item.itemDetail.id}`)
+        }
+    }
+
     return (
-        <article className="p-grid">
+        <article className="p-grid" onClick={handleClickOnItem} style={{ cursor: 'pointer' }}>
             <div className="p-col-3 p-md-2">
                 <img className="w-100" src={getImageSource()} />
             </div>

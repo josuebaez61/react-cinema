@@ -25,6 +25,7 @@ import Cart from '../views/Cart/Cart';
 import Cinemas from '../views/Cinemas/Cinemas';
 import Contact from '../views/Contact/Contact';
 import Home from '../views/Home/Home';
+import ItemNotFound from '../views/ItemNotFound/ItemNotFound';
 import MovieDetail from '../views/MovieDetail/MovieDetail';
 import Search from '../views/Search/Search';
 import UserScreen from '../views/UserScreen/UserScreen';
@@ -83,6 +84,7 @@ const AppRouter = () => {
             <Route exact path="/search" component={Search} />
             <Route exact path="/additionals" component={Additionals} />
             <Route exact path="/additional/:id" component={Additional} />
+            <Route exact path="/not-found" component={ItemNotFound} />
             <PrivateRoute exact path="/cart" component={Cart} isAuthenticated={isLogged} />
             <PrivateRoute exact path="/user-screen" component={UserScreen} isAuthenticated={isLogged} />
             <Redirect to="/cartelera" />

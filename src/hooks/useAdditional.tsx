@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useHistory, useParams } from "react-router-dom";
 import { getFirestore } from "../firebase";
 import { Additional } from "../models/Additional";
 
@@ -8,12 +8,16 @@ export const useAdditional = () => {
     const [loading, setLoading] = useState<boolean>(false);
     let { id } = useParams<{ id: string }>();
     const db = getFirestore();
-
+    const history = useHistory();
     useEffect(() => {
         setLoading(true)
         db.collection('additionals').doc(id).get().then((doc) => {
-            const data = {...doc.data(), id: doc.id } as Additional;
-            setAdditional(data);
+            if ( doc.exists ) {
+                const data = {...doc.data(), id: doc.id } as Additional;
+                setAdditional(data);
+            } else {
+                history.push('/not-found')
+            }
         }).finally(() => setLoading(false));
     }, [db, id]);
 

@@ -1,5 +1,9 @@
 import React, { createContext, ReactElement, useState } from 'react'
+import { useSelector } from 'react-redux';
+import Swal from 'sweetalert2';
+import { fb, getFirestore } from '../firebase';
 import { CartItem } from '../models/CartItem';
+import { RootState } from '../store';
 
 interface CartContextInterface {
     cart: CartItem[];
@@ -13,7 +17,10 @@ interface CartContextInterface {
     cartWidgetIsVisible: boolean;
     isInCart: (item: CartItem) => boolean;
     getTotalQuantityOfItems: () => number;
+    buy: (checkoutData: CheckoutData) => Promise<boolean>;
 }
+
+interface CheckoutData { fist_name: string; last_name: string; phone: string; }
 
 interface CartProvidersProps {
     children: ReactElement<any, any>
@@ -22,7 +29,7 @@ interface CartProvidersProps {
 export const CartContext = createContext<CartContextInterface>({} as CartContextInterface);
 
 function CartProvider({ children }: CartProvidersProps) {
-
+    const auth = useSelector((state: RootState) => state.auth);
     const [cart, setCart] = useState<CartItem[]>([]);
     const [cartWidgetIsVisible, setCartWidgetIsVisible] = useState<boolean>(false);
 
@@ -68,16 +75,56 @@ function CartProvider({ children }: CartProvidersProps) {
 
     const getTotalQuantityOfItems = () => {
         let totalQuantity = 0;
-        cart.length > 0 
-        ? (totalQuantity = cart.map(item => item.quantity).reduce((accumulator, current) => accumulator + current))
-        : totalQuantity = 0;
+        cart.length > 0
+            ? (totalQuantity = cart.map(item => item.quantity).reduce((accumulator, current) => accumulator + current))
+            : totalQuantity = 0;
         return totalQuantity;
+    }
+
+    const buy = (checkoutData: CheckoutData): Promise<boolean> => {
+        return new Promise((resolve) => {
+            const buyData = {
+                buyer: {
+                    ...auth,
+                    ...checkoutData
+                },
+                total: getCartTotalPrice(),
+                items: cart.map(item => JSON.parse(JSON.stringify(item))),
+                date: fb.firestore.Timestamp.now(),
+                status: 'confirmed'
+            }
+            Swal.fire({
+                title: 'Estamos procesando su orden',
+                text: 'Espere por favor...',
+                allowEnterKey: false,
+                allowOutsideClick: false,
+                allowEscapeKey: false
+            });
+            Swal.showLoading();
+            getFirestore().collection('orders').add(buyData).then(doc => {
+                Swal.fire({
+                    title: 'Orden realizada',
+                    icon: 'success',
+                    text: `Numero de orden: #${doc.id}`
+                }).then(() => {
+                    setCart([]);
+                });
+            }).catch( err => {            
+                Swal.fire({
+                    title: 'Ocurrió un error',
+                    icon: 'error',
+                    text: err.message ? err.message : 'Ocurrió un error inesperado, vuelva a intentarlo.'
+                });
+            }).finally(() => {
+                resolve(true);
+            });
+        })
     }
 
     return (
         <CartContext.Provider value={{
             cart, setCart, addItem, removeItem, clearCart, setItemQuantity, getCartTotalPrice, isInCart, cartWidgetIsVisible,
-            setCartWidgetIsVisible, getTotalQuantityOfItems
+            setCartWidgetIsVisible, getTotalQuantityOfItems, buy
         }}>
             {children}
         </CartContext.Provider>
