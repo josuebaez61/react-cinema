@@ -1,7 +1,7 @@
 import React, { createContext, ReactElement, useState } from 'react'
 import { CartItem } from '../models/CartItem';
 
-interface CartContext {
+interface CartContextInterface {
     cart: CartItem[];
     addItem: (item: CartItem) => void;
     setCart: React.Dispatch<React.SetStateAction<CartItem[]>>;
@@ -19,8 +19,7 @@ interface CartProvidersProps {
     children: ReactElement<any, any>
 }
 
-export const CartContext = createContext<CartContext>({} as CartContext);
-
+export const CartContext = createContext<CartContextInterface>({} as CartContextInterface);
 
 function CartProvider({ children }: CartProvidersProps) {
 

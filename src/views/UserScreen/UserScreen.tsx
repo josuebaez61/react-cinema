@@ -1,6 +1,5 @@
 import { Button } from 'primereact/button'
 import { Card } from 'primereact/card'
-import { Divider } from 'primereact/divider'
 import React, { useContext } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { CartContext } from '../../context/CartContext'
@@ -10,7 +9,7 @@ import { logout } from '../../store/actions/authActions'
 
 const UserScreen = () => {
     const dispatch = useDispatch();
-    const { displayName, email, uid } = useSelector((state: RootState) => state.auth);
+    const { email } = useSelector((state: RootState) => state.auth);
     return (
         <div className="container p-pb-2 p-pt-2">
             <div className="p-grid p-jc-center">

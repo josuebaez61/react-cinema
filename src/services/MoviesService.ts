@@ -1,7 +1,6 @@
 import Axios from 'axios';
 import { GenresResponse } from '../models/Genre';
 import { MovieDetail, NowPlayingResponse, SearchResponse } from '../models/Movies';
-import queryString from 'query-string';
 
 export const theMovieDBAxios = Axios.create({
     baseURL: 'https://api.themoviedb.org/3/',

@@ -28,6 +28,7 @@ const Login = () => {
         fb.auth().signInWithEmailAndPassword(email, password)
             .then(({ user }) => {
                 if (user?.uid) {
+                    resetForm();
                     history.goBack();
                 }
             })

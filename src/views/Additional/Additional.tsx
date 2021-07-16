@@ -15,7 +15,7 @@ import { useSelector } from 'react-redux'
 import { InputNumber } from 'primereact/inputnumber'
 const Additional = () => {
     const { additional, loading } = useAdditional();
-    const [quantity, setQuantity] = useState(0);
+    const [quantity, setQuantity] = useState(1);
     const { addItem, isInCart } = useContext(CartContext);
     const history = useHistory();
     const { uid } = useSelector((state: RootState) => state.auth)

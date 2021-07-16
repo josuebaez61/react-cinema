@@ -1,4 +1,4 @@
-import React, { ComponentProps, ComponentType } from 'react'
+import React from 'react'
 import { Redirect, Route, RouteChildrenProps, RouteComponentProps } from 'react-router-dom'
 
 interface PrivateRouteProps {

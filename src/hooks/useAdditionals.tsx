@@ -13,7 +13,7 @@ export const useAdditionals = () => {
             const data = querySnapshot.docs.map(d => ({...d.data(), id: d.id}) as Additional);
             setAdditionals(data);
         }).finally(() => setLoading(false));
-    }, []);
+    }, [db]);
 
     return {
         additionals,

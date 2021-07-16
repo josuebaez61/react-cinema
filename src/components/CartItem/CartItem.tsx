@@ -1,14 +1,11 @@
-import React, { SyntheticEvent, useContext } from 'react'
-import { InputText } from 'primereact/inputtext'
-import noImage from '../../assets/image/no-image.jpg'
-import CounterInput from '../CounterInput/CounterInput'
+import React, { useContext } from 'react'
 import './CartItem.scss'
 import { CartItem as CartItemModel, ItemType } from '../../models/CartItem'
 import { CartContext } from '../../context/CartContext'
 import { Button } from 'primereact/button';
 import { MovieDetail } from '../../models/Movies'
 import { Additional } from '../../models/Additional'
-import { InputNumber, InputNumberChangeParams, InputNumberValueChangeParams } from 'primereact/inputnumber';
+import { InputNumber, InputNumberChangeParams } from 'primereact/inputnumber';
 
 
 interface CartItemProps {

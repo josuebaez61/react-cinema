@@ -2,17 +2,14 @@ import { Button } from 'primereact/button';
 import { Card } from 'primereact/card';
 import { InputText } from 'primereact/inputtext';
 import React, { useState } from 'react'
-import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import { fb } from '../../firebase';
 import { useForm } from '../../hooks/useForm';
-import { login } from '../../store/actions/authActions';
 import './Register.scss'
 const Register = () => {
     const history = useHistory()
     const [isLoading, setIsLoading] = useState(false);
-    const dispatch =  useDispatch()
     const [formValue, handleChange, resetForm] = useForm({
         username: '',
         email: '',

@@ -1,5 +1,4 @@
 import { QuerySnapshot, DocumentData } from '@firebase/firestore-types';
-import Axios from 'axios';
 import { getFirestore } from '../firebase';
 import { Cinema } from '../models/Cinema';
 

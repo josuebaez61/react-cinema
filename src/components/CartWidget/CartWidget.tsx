@@ -4,7 +4,6 @@ import { useHistory, useLocation } from 'react-router-dom';
 import { CartContext } from '../../context/CartContext';
 import { animate } from '../../helpers/animate';
 import { Additional } from '../../models/Additional';
-import { CartItem } from '../../models/CartItem';
 import { MovieDetail } from '../../models/Movies';
 import './CartWidget.scss'
 

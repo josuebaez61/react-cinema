@@ -1,5 +1,4 @@
 import { getFirestore } from "../firebase";
-import { QuerySnapshot, DocumentData } from '@firebase/firestore-types';
 
 const db = getFirestore();
 

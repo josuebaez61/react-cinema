@@ -15,7 +15,7 @@ export const useAdditional = () => {
             const data = {...doc.data(), id: doc.id } as Additional;
             setAdditional(data);
         }).finally(() => setLoading(false));
-    }, []);
+    }, [db, id]);
 
     return {
         additional,

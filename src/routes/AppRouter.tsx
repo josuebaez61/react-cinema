@@ -56,7 +56,7 @@ const AppRouter = () => {
       }
       setCheckingSession(false);
     })
-  }, [])
+  }, [dispatch, setIsLogged, setCheckingSession])
 
   if (checkingSession) {
     return (
