@@ -76,7 +76,7 @@ const Register = () => {
                                                 <label htmlFor="password">Contraseña</label>
                                                 <InputText onChange={handleChange} value={formValue.password} id="password" type="password" name="password" />
                                             </div>
-                                            <Button disabled={isLoading} type="submit" className="p-mt-2 p-button-rounded" label="Registrarse"></Button>
+                                            <Button loading={isLoading} disabled={isLoading} type="submit" className="p-mt-2 p-button-rounded" label="Registrarse"></Button>
                                             <p className="p-text-right p-mt-2">
                                                 <Button
                                                     onClick={history.goBack}

@@ -75,7 +75,7 @@ const Login = () => {
                                                 <label htmlFor="password">Contraseña</label>
                                                 <InputText onChange={handleChange} value={password} name="password" id="password" type="password" />
                                             </div>
-                                            <Button disabled={isLoading} className="p-mt-2 p-button-rounded" label="Login"></Button>
+                                            <Button loading={isLoading} disabled={isLoading} className="p-mt-2 p-button-rounded" label="Login"></Button>
                                             <div className="p-d-flex p-jc-between p-mt-2">
                                                 <Link to="/reset-password">Olvidé mi clave</Link>
                                                 <Link to="/register">Registrarse</Link>
