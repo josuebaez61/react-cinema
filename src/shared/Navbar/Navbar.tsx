@@ -74,14 +74,14 @@ const Navbar = () => {
                                         </button>
                                     </div>
                                     <CustomDivider longitude="25px" />
-                                    <div>
-                                        <button className="text-button" onClick={() => dispatch(showSearchModal())} >
-                                            <FontAwesomeIcon icon={faSearch} />
-                                        </button>
-                                    </div>
-                                    <CustomDivider longitude="25px" />
                                 </>
                             }
+                            <div>
+                                <button className="text-button" onClick={() => dispatch(showSearchModal())} >
+                                    <FontAwesomeIcon icon={faSearch} />
+                                </button>
+                            </div>
+                            <CustomDivider longitude="25px" />
                             <div>
                                 {
                                     uid
