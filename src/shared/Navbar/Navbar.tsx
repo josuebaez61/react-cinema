@@ -47,7 +47,7 @@ const Navbar = () => {
                                 (item =>
                                 (
                                     <li key={item.url}>
-                                        <NavLink activeClassName="active" to={item.url} className="p-mr-2 p-ml-2">{item.title.toUpperCase()}</NavLink>
+                                        <NavLink exact activeClassName="active" to={item.url} className="p-mr-2 p-ml-2">{item.title.toUpperCase()}</NavLink>
                                     </li>
                                 )
                                 )

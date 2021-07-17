@@ -65,6 +65,7 @@ const Sidebar = () => {
                     (
                         <li key={item.url}>
                             <NavLink
+                                exact
                                 activeClassName="sidebar-navigation__link--active"
                                 className="sidebar-navigation__link"
                                 to={item.url}
