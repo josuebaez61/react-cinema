@@ -43,7 +43,15 @@ const CartWidget = () => {
                     <ul className="cart-widget__list">
                         {
                             cart.map((item) =>
-                                <li key={item.itemDetail.id}>
+                                <li 
+                                    className="pointer"
+                                    key={item.itemDetail.id} 
+                                    onClick={
+                                        () => item.type === 'movie'
+                                        ? history.push(`/movie/${item.itemDetail.id}`)
+                                        : history.push(`/additional/${item.itemDetail.id}`)
+                                    }
+                                >
                                     <div className="p-grid">
                                         <div className="p-col-3">
 

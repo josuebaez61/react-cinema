@@ -19,7 +19,7 @@ const PublicRoute = ({
     ...rest
 }: PrivateRouteProps) => {
     return (
-        <Route {...rest} component={ (props: any) => isAuthenticated ? <Redirect to="/cartelera"/> : <Component {...props} />} />
+        <Route {...rest} render={ (props: any) => isAuthenticated ? <Redirect to="/cartelera"/> : <Component {...props} />} />
     )
 }
 

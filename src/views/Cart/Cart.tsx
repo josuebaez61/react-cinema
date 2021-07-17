@@ -14,6 +14,8 @@ import { Dialog } from 'primereact/dialog'
 import { InputText } from 'primereact/inputtext'
 import { InputMask } from 'primereact/inputmask';
 import { useForm } from '../../hooks/useForm'
+import { useSelector } from 'react-redux'
+import { RootState } from '../../store'
 
 const Cart = () => {
 
@@ -27,6 +29,7 @@ const Cart = () => {
         last_name,
         phone
     } = formValues;
+    const { email: currentUserEmail } = useSelector((state: RootState) => state.auth);
     const history = useHistory();
     const { cart, getCartTotalPrice, clearCart, buy } = useContext(CartContext);
     const [checkoutModalIsVisible, setCheckoutModalIsVisible] = useState(false);
@@ -49,7 +52,7 @@ const Cart = () => {
     const handleBuy = async (e: FormEvent) => {
         e.preventDefault();
         const buyProcessFinished = await buy(formValues);
-        if ( buyProcessFinished ) {
+        if (buyProcessFinished) {
             setCheckoutModalIsVisible(false);
             resetForm();
         }
@@ -118,16 +121,16 @@ const Cart = () => {
                 </div>
             </Card>
             <Dialog
-                baseZIndex={ 500 }
+                baseZIndex={500}
                 style={{ width: '90%', maxWidth: '750px' }}
                 showHeader={false}
                 onHide={() => setCheckoutModalIsVisible(false)}
                 visible={checkoutModalIsVisible}
             >
                 <div className="p-pt-2 p-pb-2">
-                    <h4>Checkout de compra</h4>
+                    <h3>Checkout de compra</h3>
                     <p className="p-mb-3">Completa con los campos requeridos para completar la compra.</p>
-                    <form autoComplete="false" className="p-fluid" onSubmit={ handleBuy }>
+                    <form autoComplete="false" className="p-fluid" onSubmit={handleBuy}>
                         <div className="p-field">
                             <label htmlFor="first_name">Nombre</label>
                             <InputText
@@ -156,6 +159,7 @@ const Cart = () => {
                                 placeholder="(999) 999-9999"
                                 onChange={(e) => handleChange(e.originalEvent)} />
                         </div>
+                        <div className="p-field"><small>Comprando como: {currentUserEmail}</small></div>
                         <div className="p-field">
                             <Button className="p-mb-2" label="Comprar" />
                             <Button

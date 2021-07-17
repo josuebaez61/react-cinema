@@ -39,14 +39,14 @@ const CartItem = ({ item }: CartItemProps) => {
     }
 
     return (
-        <article className="p-grid" onClick={handleClickOnItem} style={{ cursor: 'pointer' }}>
+        <article className="p-grid">
             <div className="p-col-3 p-md-2">
-                <img className="w-100" src={getImageSource()} />
+                <img onClick={handleClickOnItem} style={{ cursor: 'pointer' }} className="w-100" src={getImageSource()} />
             </div>
             <div className="p-col-9 p-md-10">
                 <div className="p-grid">
                     <div className="p-col-12 p-md-6 p-text-center p-text-md-left">
-                        <h3>
+                        <h3 onClick={handleClickOnItem} style={{ cursor: 'pointer' }}>
                             {
                                 item.type === 'movie'
                                     ? (item.itemDetail as MovieDetail).title

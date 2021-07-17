@@ -1,5 +1,6 @@
-import { faSearch } from '@fortawesome/free-solid-svg-icons';
-import React, { useEffect, useState } from 'react'
+import { faSearch, faShoppingCart } from '@fortawesome/free-solid-svg-icons';
+import { Badge } from 'primereact/badge';
+import React, { useContext, useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import {
   BrowserRouter as Router,
@@ -11,6 +12,7 @@ import Login from '../auth/Login/Login';
 import Register from '../auth/Register/Register';
 import FloatingButton from '../components/FloatingButton/FloatingButton';
 import SearchModal from '../components/SearchModal/SearchModal';
+import { CartContext } from '../context/CartContext';
 import { fb } from '../firebase';
 import Footer from '../shared/Footer/Footer';
 import Navbar from '../shared/Navbar/Navbar';
@@ -31,20 +33,23 @@ import Search from '../views/Search/Search';
 import UserScreen from '../views/UserScreen/UserScreen';
 import PrivateRoute from './PrivateRoute';
 import PublicRoute from './PublicRoute';
+import { History } from 'history';
 
 const AppRouter = () => {
   const { show: showSearch } = useSelector((state: RootState) => state.search);
   const { show: showSidebar } = useSelector((state: RootState) => state.sidebar);
-  // const {  } = useSelector((state: RootState) => state.auth);
+  const { getTotalQuantityOfItems } = useContext(CartContext);
   const [isLogged, setIsLogged] = useState(false);
   const [checkingSession, setCheckingSession] = useState(true);
   const dispatch = useDispatch();
 
-
-
-  const onFloatingButtonClick = () => {
+  const onFloatingButtonClick = (e: React.MouseEvent<Element, MouseEvent>, history: History<unknown>) => {
     dispatch(showSearchModal());
     showSidebar && dispatch(hideSidebar());
+  }
+
+  const onCartFloatingButtonClick = (e: React.MouseEvent<Element, MouseEvent>, history: History<unknown>) => {
+    history.push('/cart')
   }
 
   useEffect(() => {
@@ -86,6 +91,7 @@ const AppRouter = () => {
             <Route exact path="/additional/:id" component={Additional} />
             <Route exact path="/not-found" component={ItemNotFound} />
             <PrivateRoute exact path="/cart" component={Cart} isAuthenticated={isLogged} />
+            {/* <Route exact path="/cart" component={Cart} /> */}
             <PrivateRoute exact path="/user-screen" component={UserScreen} isAuthenticated={isLogged} />
             <Redirect to="/cartelera" />
           </Switch>
@@ -98,6 +104,17 @@ const AppRouter = () => {
           icon={faSearch}
           position="right"
         />
+        {
+          isLogged &&
+          <FloatingButton
+            showBadge={getTotalQuantityOfItems() > 0}
+            badgeValue={getTotalQuantityOfItems()}
+            className="p-d-flex p-d-md-none animate__animated animate__fadeInUp floating-button-black"
+            onClick={(e, history) => history.push('/cart') }
+            icon={faShoppingCart}
+            position="left"
+          />
+        }
       </div>
     </Router>
   )
