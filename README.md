@@ -4,7 +4,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 ## Proceso de compra
 
-![Alt Text](https://media.giphy.com/media/qxT4kyeaVumhj0SPVE/giphy.gif)
+![Alt Text](https://media.giphy.com/media/qxT4kyeaVumhj0SPVE/giphy-downsized-large.gif)
 
 - El usuario debe haber iniciado sesión para poder acceder al carrito.
 - Se puede usar uno de los usuarios de prueba. E-mail: test1@email.com Password: 123456
@@ -36,7 +36,7 @@ Descripcion de la estructura del proyecto
 - Firebase: Conexión a la base de datos.
 - FontAwesome: Libreria de iconos.
 - Typescript: Para trabajar con un tipado estricto en Javascript.
-- AnimateCSS: Libreria de CSS para animaciones.
+- AnimateCSS: Libreria de CSS para animaciones
 
 ## Available Scripts
 
