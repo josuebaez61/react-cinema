@@ -1,6 +1,13 @@
-# Getting Started with Create React App
+# React Cinema
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+
+## Proceso de compra
+
+![Alt Text](https://media.giphy.com/media/qxT4kyeaVumhj0SPVE/giphy.gif)
+
+- El usuario debe haber iniciado sesión para poder acceder al carrito.
+- Se puede usar uno de los usuarios de prueba. E-mail: test1@email.com Password: 123456
 
 ## Estructura de carpetas
 Descripcion de la estructura del proyecto
@@ -18,6 +25,18 @@ Descripcion de la estructura del proyecto
     |___ assets Todo lo relacionado a imagenes, fuentes, audio, scss, etc...
     |___ store Redux store, acciones, reducers, y un index con el setting del store de Redux. 
 ```
+
+## Librerias instaladas
+- query-string: Permite trabajar facilmente con el parseo de URLs para obtener los parametros en forma de un objeto Javascript.
+- PrimeReact: Libreria de componentes UI y estilos CSS.
+- node-sass: Para trabajar con SCSS
+- SweetAlert2: Para mostrar bonitas alertas o mensajes en pantalla para darle feedback al usuario de sus acciones.
+- Redux: Manejo del estado de ciertas funcionalidades de la app.
+- Axios: Manejo de peticiones http.
+- Firebase: Conexión a la base de datos.
+- FontAwesome: Libreria de iconos.
+- Typescript: Para trabajar con un tipado estricto en Javascript.
+- AnimateCSS: Libreria de CSS para animaciones.
 
 ## Available Scripts
 
