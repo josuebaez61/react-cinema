@@ -2,7 +2,7 @@ import { faMinus, faPlus } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { Button } from 'primereact/button'
 import { InputText } from 'primereact/inputtext'
-import React, { RefObject, useEffect, useRef, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import './CounterInput.scss'
 
 export interface CounterInputChangeEvent {
@@ -41,6 +41,7 @@ const CounterInput = ({ minValue = 0, maxValue, onChange, name = "", transparent
             minValue,
             maxValue
         });
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [value])
 
 

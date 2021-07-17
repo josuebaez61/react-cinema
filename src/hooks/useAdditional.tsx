@@ -19,7 +19,7 @@ export const useAdditional = () => {
                 history.push('/not-found')
             }
         }).finally(() => setLoading(false));
-    }, [db, id]);
+    }, [db, id, history]);
 
     return {
         additional,

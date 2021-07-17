@@ -20,7 +20,7 @@ const Navbar = () => {
 
     const { cart, setCartWidgetIsVisible, getTotalQuantityOfItems } = useContext(CartContext);
     const { show } = useSelector((state: RootState) => state.sidebar)
-    const { displayName, uid, email } = useSelector((state: RootState) => state.auth)
+    const { uid, email } = useSelector((state: RootState) => state.auth)
     const dispatch = useDispatch();
     const history = useHistory();
 
@@ -35,13 +35,13 @@ const Navbar = () => {
                 <div className="p-d-flex p-jc-between p-align-center">
                     <Button
                         onClick={() => show ? dispatch(hideSidebar()) : dispatch(showSidebar())}
-                        className="p-d-md-none toggle-button p-button-primary p-button-text"
+                        className="p-d-lg-none toggle-button p-button-primary p-button-text"
                         icon="pi pi-list"
                     />
                     <Link to="/cartelera" style={{ textDecoration: "none" }}>
                         <Logo />
                     </Link>
-                    <ul className="p-d-none p-d-md-inline-block">
+                    <ul className="p-d-none p-d-lg-inline-block">
                         {
                             navItems.map
                                 (item =>
@@ -53,7 +53,7 @@ const Navbar = () => {
                                 )
                         }
                     </ul>
-                    <div className="p-d-none p-d-md-inline-block">
+                    <div className="p-d-none p-d-lg-inline-block">
                         <div className="search-login p-d-flex">
                             {
                                 uid

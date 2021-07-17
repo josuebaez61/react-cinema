@@ -15,6 +15,6 @@ export const useMovie = () => {
             .catch( err => {
                 history.push('/not-found')
             });
-    }, [id])
+    }, [id, history])
     return currentMovie;
 }

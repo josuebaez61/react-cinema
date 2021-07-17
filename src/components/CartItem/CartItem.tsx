@@ -41,7 +41,7 @@ const CartItem = ({ item }: CartItemProps) => {
     return (
         <article className="p-grid">
             <div className="p-col-3 p-md-2">
-                <img onClick={handleClickOnItem} style={{ cursor: 'pointer' }} className="w-100" src={getImageSource()} />
+                <img onClick={handleClickOnItem} style={{ cursor: 'pointer' }} className="w-100" src={getImageSource()} alt="Cart item" />
             </div>
             <div className="p-col-9 p-md-10">
                 <div className="p-grid">

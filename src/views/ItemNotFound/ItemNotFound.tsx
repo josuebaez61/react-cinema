@@ -1,4 +1,4 @@
-import { faFrown, faSadCry } from '@fortawesome/free-solid-svg-icons'
+import { faFrown } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { Button } from 'primereact/button'
 import { Card } from 'primereact/card'

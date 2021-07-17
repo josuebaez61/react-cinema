@@ -1,5 +1,4 @@
 import { faSearch, faShoppingCart } from '@fortawesome/free-solid-svg-icons';
-import { Badge } from 'primereact/badge';
 import React, { useContext, useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import {
@@ -48,10 +47,6 @@ const AppRouter = () => {
     showSidebar && dispatch(hideSidebar());
   }
 
-  const onCartFloatingButtonClick = (e: React.MouseEvent<Element, MouseEvent>, history: History<unknown>) => {
-    history.push('/cart')
-  }
-
   useEffect(() => {
     fb.auth().onAuthStateChanged((user) => {
       if (user?.uid) {
@@ -91,7 +86,6 @@ const AppRouter = () => {
             <Route exact path="/additional/:id" component={Additional} />
             <Route exact path="/not-found" component={ItemNotFound} />
             <PrivateRoute exact path="/cart" component={Cart} isAuthenticated={isLogged} />
-            {/* <Route exact path="/cart" component={Cart} /> */}
             <PrivateRoute exact path="/user-screen" component={UserScreen} isAuthenticated={isLogged} />
             <Redirect to="/cartelera" />
           </Switch>
@@ -99,7 +93,7 @@ const AppRouter = () => {
         <Footer />
         <SearchModal visible={showSearch} />
         <FloatingButton
-          className="p-d-flex p-d-md-none animate__animated animate__fadeInUp"
+          className="p-d-flex p-d-lg-none animate__animated animate__fadeInUp"
           onClick={onFloatingButtonClick}
           icon={faSearch}
           position="right"
@@ -109,7 +103,7 @@ const AppRouter = () => {
           <FloatingButton
             showBadge={getTotalQuantityOfItems() > 0}
             badgeValue={getTotalQuantityOfItems()}
-            className="p-d-flex p-d-md-none animate__animated animate__fadeInUp floating-button-black"
+            className="p-d-flex p-d-lg-none animate__animated animate__fadeInUp floating-button-black"
             onClick={(e, history) => history.push('/cart') }
             icon={faShoppingCart}
             position="left"

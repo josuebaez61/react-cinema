@@ -19,6 +19,7 @@
     position: fixed;
     z-index: 9999;
     height: calc(100vh - #{$navbarHeight});
+    // height: 100vh;
     background-color: white;
     width: 70%;
     top: $navbarHeight;

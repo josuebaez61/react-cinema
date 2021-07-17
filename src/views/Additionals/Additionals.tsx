@@ -51,7 +51,7 @@ const Additionals = () => {
                 setCopyAdditionals(additionals);
                 break;
         }
-    }, [currentFilter])
+    }, [currentFilter, additionals])
 
     return (
         <div className="container p-mt-2 p-mb-2">

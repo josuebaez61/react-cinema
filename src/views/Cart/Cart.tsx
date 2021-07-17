@@ -18,7 +18,6 @@ import { useSelector } from 'react-redux'
 import { RootState } from '../../store'
 
 const Cart = () => {
-
     const [formValues, handleChange, resetForm] = useForm({
         first_name: '',
         last_name: '',
@@ -82,7 +81,7 @@ const Cart = () => {
                                 </div>
                                 <div className="p-col-12">
                                     <div className="p-grid p-jc-between">
-                                        <div className="p-col-12 p-md-5">
+                                        <div className="p-col-12 p-md-7">
                                             <Button
                                                 onClick={history.goBack}
                                                 icon="pi pi-arrow-left"

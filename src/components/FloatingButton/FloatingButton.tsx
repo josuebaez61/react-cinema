@@ -1,7 +1,7 @@
 import { IconProp } from '@fortawesome/fontawesome-svg-core'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { Badge } from 'primereact/badge'
-import React, { MouseEventHandler, useEffect, useState, MouseEvent } from 'react'
+import React, { useEffect, useState, MouseEvent } from 'react'
 import { useHistory } from 'react-router-dom'
 import { History } from 'history';
 import './FloatingButton.scss'

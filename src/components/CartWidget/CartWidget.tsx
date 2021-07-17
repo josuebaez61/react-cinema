@@ -22,7 +22,8 @@ const CartWidget = () => {
         if (cartWidgetIsVisible) {
             animate('.cart-widget', 'fadeOut').then(() => setCartWidgetIsVisible(false));
         }
-    }, [location]);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [location, setCartWidgetIsVisible]);
 
     return (
         < >
@@ -43,13 +44,13 @@ const CartWidget = () => {
                     <ul className="cart-widget__list">
                         {
                             cart.map((item) =>
-                                <li 
+                                <li
                                     className="pointer"
-                                    key={item.itemDetail.id} 
+                                    key={item.itemDetail.id}
                                     onClick={
                                         () => item.type === 'movie'
-                                        ? history.push(`/movie/${item.itemDetail.id}`)
-                                        : history.push(`/additional/${item.itemDetail.id}`)
+                                            ? history.push(`/movie/${item.itemDetail.id}`)
+                                            : history.push(`/additional/${item.itemDetail.id}`)
                                     }
                                 >
                                     <div className="p-grid">
