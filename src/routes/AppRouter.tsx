@@ -74,7 +74,7 @@ const AppRouter = () => {
 
         <div style={{ paddingTop: '60px', minHeight: "calc(100vh - 300px)" }}>
           <Switch>
-            <Route exact path="/cartelera" component={Home} />
+            <Route exact path="/" component={Home} />
             <Route exact path="/cinemas" component={Cinemas} />
             <PublicRoute exact path="/login" component={Login} isAuthenticated={isLogged} />
             <PublicRoute exact path="/register" component={Register} isAuthenticated={isLogged} />
@@ -86,7 +86,7 @@ const AppRouter = () => {
             <Route exact path="/not-found" component={ItemNotFound} />
             <PrivateRoute exact path="/cart" component={Cart} isAuthenticated={isLogged} />
             <PrivateRoute exact path="/user-screen" component={UserScreen} isAuthenticated={isLogged} />
-            <Redirect to="/cartelera" />
+            <Redirect to="/" />
           </Switch>
         </div>
         <Footer />

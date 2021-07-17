@@ -13,7 +13,7 @@ const ItemNotFound = () => {
                 <FontAwesomeIcon size="3x" icon={ faFrown }></FontAwesomeIcon>
                 <h2 className="p-pb-3">El producto ya no está disponible.</h2>
                 <Button 
-                    onClick={ () => history.push('/cartelera') }
+                    onClick={ () => history.push('/') }
                     label="Volver al inicio"
                 />
             </Card>

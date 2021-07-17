@@ -2,7 +2,7 @@ import { faBuilding, faEnvelope, faPizzaSlice, faTicketAlt } from "@fortawesome/
 
 export const navItems = [
     {
-        url: '/cartelera',
+        url: '/',
         title: 'Cartelera',
         icon: faTicketAlt
     },

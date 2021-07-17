@@ -38,7 +38,7 @@ const Navbar = () => {
                         className="p-d-lg-none toggle-button p-button-primary p-button-text"
                         icon="pi pi-list"
                     />
-                    <Link to="/cartelera" style={{ textDecoration: "none" }}>
+                    <Link to="/" style={{ textDecoration: "none" }}>
                         <Logo />
                     </Link>
                     <ul className="p-d-none p-d-lg-inline-block">

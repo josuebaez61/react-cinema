@@ -24,7 +24,7 @@ const PrivateRoute = ({
             render={ (props: any) => 
                 isAuthenticated 
                     ? <Component {...props} /> 
-                    : <Redirect to="/cartelera"/>
+                    : <Redirect to="/"/>
                 } 
             />
     )
