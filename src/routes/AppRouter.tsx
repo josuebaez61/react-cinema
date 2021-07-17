@@ -60,7 +60,7 @@ const AppRouter = () => {
     })
   }, [dispatch, setIsLogged, setCheckingSession])
 
-  if (true) {
+  if (checkingSession) {
     return (
       <LoadingAppScreen />
     )
