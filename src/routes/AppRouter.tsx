@@ -72,8 +72,6 @@ const AppRouter = () => {
         <Navbar />
         <Sidebar />
 
-        {/* A <Switch> looks through its children <Route>s and
-              renders the first one that matches the current URL. */}
         <div style={{ paddingTop: '60px', minHeight: "calc(100vh - 300px)" }}>
           <Switch>
             <Route exact path="/cartelera" component={Home} />

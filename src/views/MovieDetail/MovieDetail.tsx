@@ -29,6 +29,7 @@ const Movie = () => {
     });
     const { addItem, isInCart } = useContext(CartContext);
     const { uid } = useSelector((state: RootState) => state.auth)
+    const { results: movies } = useSelector((state: RootState) => state.movies)
 
     const handleSubmit = (e: any) => {
         e.preventDefault();
@@ -113,42 +114,46 @@ const Movie = () => {
                                         )
                                     }
                                 </div>
-                                <form onSubmit={handleSubmit} id="reservation-form" className="p-grid p-mt-3">
-                                    <div className="p-col-12 p-md-6">
-                                        <div className="p-fluid">
-                                            <div className="p-field">
-                                                <label>Entrada general: ${ticketUnitPrice.toFixed(2)}</label>
-                                                <br />
-                                                <CounterInput
-                                                    name="tickets"
-                                                    minValue={1}
-                                                    maxValue={10}
-                                                    onChange={handleChange}
-                                                />
-                                                <small className="p-d-block" style={{ color: '#cccc' }} >Cantidad disponible: 10</small>
+                                {
+                                    movies.findIndex( m => m.id === movie.id) > -1
+                                    ? <form onSubmit={handleSubmit} id="reservation-form" className="p-grid p-mt-3">
+                                        <div className="p-col-12 p-md-6">
+                                            <div className="p-fluid">
+                                                <div className="p-field">
+                                                    <label>Entrada general: ${ticketUnitPrice.toFixed(2)}</label>
+                                                    <br />
+                                                    <CounterInput
+                                                        name="tickets"
+                                                        minValue={1}
+                                                        maxValue={10}
+                                                        onChange={handleChange}
+                                                    />
+                                                    <small className="p-d-block" style={{ color: '#cccc' }} >Cantidad disponible: 10</small>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                    <div className="p-col-12 p-md-6">
-                                        <div className="p-fluid">
-                                            <div className="p-field">
-                                                <label>Sucursal</label>
-                                                <br />
-                                                <Dropdown
-                                                    // optionValue="id"
-                                                    value={cinema}
-                                                    name="cinema"
-                                                    optionLabel="name"
-                                                    options={cinemas}
-                                                    placeholder="Elige una sucursal"
-                                                    onChange={handleChange}
-                                                    className={cinemaIsRequiredError ? 'p-invalid' : ''}
-                                                />
-                                                <small className={`${cinemaIsRequiredError ? 'p-d-block p-error' : 'p-d-none'}`}>Debe elegir una sucursal</small>
+                                        <div className="p-col-12 p-md-6">
+                                            <div className="p-fluid">
+                                                <div className="p-field">
+                                                    <label>Sucursal</label>
+                                                    <br />
+                                                    <Dropdown
+                                                        // optionValue="id"
+                                                        value={cinema}
+                                                        name="cinema"
+                                                        optionLabel="name"
+                                                        options={cinemas}
+                                                        placeholder="Elige una sucursal"
+                                                        onChange={handleChange}
+                                                        className={cinemaIsRequiredError ? 'p-invalid' : ''}
+                                                    />
+                                                    <small className={`${cinemaIsRequiredError ? 'p-d-block p-error' : 'p-d-none'}`}>Debe elegir una sucursal</small>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                </form>
+                                    </form>
+                                    : <h3>Fuera de cartelera</h3>
+                                }
                             </div>
                         </div>
                         <div className="p-card-footer">
