@@ -33,6 +33,7 @@ import UserScreen from '../views/UserScreen/UserScreen';
 import PrivateRoute from './PrivateRoute';
 import PublicRoute from './PublicRoute';
 import { History } from 'history';
+import LoadingAppScreen from '../views/LoadingAppScreen/LoadingAppScreen';
 
 const AppRouter = () => {
   const { show: showSearch } = useSelector((state: RootState) => state.search);
@@ -59,9 +60,9 @@ const AppRouter = () => {
     })
   }, [dispatch, setIsLogged, setCheckingSession])
 
-  if (checkingSession) {
+  if (true) {
     return (
-      <h1>Checking</h1>
+      <LoadingAppScreen />
     )
   }
 
