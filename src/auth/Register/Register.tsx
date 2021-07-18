@@ -79,6 +79,7 @@ const Register = () => {
                                             <Button loading={isLoading} disabled={isLoading} type="submit" className="p-mt-2 p-button-rounded" label="Registrarse"></Button>
                                             <p className="p-text-right p-mt-2">
                                                 <Button
+                                                    type="button"
                                                     onClick={history.goBack}
                                                     label="Volver atrás"
                                                     className="p-button-link"
